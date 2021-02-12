@@ -5,6 +5,7 @@ import CatalogScreen from './CatalogScreen/CatalogScreen';
 import ChatScreen from './ChatScreen/ChatScreen';
 import CollectionScreen from './CollectionScreen/CollectionScreen';
 import ProfileScreen from './ProfileScreen/ProfileScreen';
+import LoginScreen from './LoginScreen/LoginScreen';
 
 /*
 import ProductScreen from './ProductScreen/ProductScreen';
@@ -24,7 +25,7 @@ import SettingScreen from './SettingScreen/SettingScreen';
 
 export {
     SplashScreen,
-    
+    LoginScreen,
     HomeScreen,
     CatalogScreen,
     CollectionScreen,

@@ -1,11 +1,4 @@
 import React from 'react';
-import BottomNavigator from './src/navigation';
-import { ThemeProvider, LightTheme } from './src/theme';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import LoginScreen from './src/screens';
-
-
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
 export default class App extends React.Component {
@@ -16,7 +9,7 @@ export default class App extends React.Component {
   render(){
     return (
       <View style={styles.container}>
-        <Text style={styles.logo}>TradeYourSelf</Text>
+        <Text style={styles.logo}>HeyAPP</Text>
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
@@ -39,7 +32,7 @@ export default class App extends React.Component {
           <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={styles.signupText}>Signup</Text>
+          <Text style={styles.loginText}>Signup</Text>
         </TouchableOpacity>
 
   
@@ -51,19 +44,19 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f0f8ff',
+    backgroundColor: '#003f5c',
     alignItems: 'center',
     justifyContent: 'center',
   },
   logo:{
     fontWeight:"bold",
-    fontSize:25,
+    fontSize:50,
     color:"#fb5b5a",
     marginBottom:40
   },
   inputView:{
     width:"80%",
-    backgroundColor:"#a9a9a9",
+    backgroundColor:"#465881",
     borderRadius:25,
     height:50,
     marginBottom:20,
@@ -72,10 +65,10 @@ const styles = StyleSheet.create({
   },
   inputText:{
     height:50,
-    color:"#003f5c"
+    color:"white"
   },
   forgot:{
-    color:"#003f5c",
+    color:"white",
     fontSize:11
   },
   loginBtn:{
@@ -90,24 +83,5 @@ const styles = StyleSheet.create({
   },
   loginText:{
     color:"white"
-  },
-  signupText:{
-    color:"#003f5c"
   }
 });
-
-
-
-
-/*const App = () => {
-  return (
-    <ThemeProvider theme={LightTheme}>
-     
-        <BottomNavigator/>
-    
-      </ThemeProvider>
-   
-  );
-}
-
-export default App;*/
