@@ -52,9 +52,9 @@ const BottomNavigator = () => {
           name={NAVIGATION_TO_CATALOG_SCREEN}
           component={CatalogScreen}
           options={{
-            tabBarLabel: 'Catalog',
+            tabBarLabel: 'Search',
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="trending-up" color={color} size={size} />
+              <MaterialCommunityIcons name="magnify" color={color} size={size} />
             ),
           }}
         />

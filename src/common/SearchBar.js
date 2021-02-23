@@ -8,12 +8,25 @@ export default function SearchBar() {
                 <View style={styles.searchbar}>
                     <MaterialCommunityIcons name="magnify" style={{fontSize:24,}}/>
                     <TextInput placeholder='Search' style={{fontSize:24, marginLeft: 10, marginRight: 'auto', }} />
+                    
+                </View>
+                
+        </View>
+    )
+}
+
+/*export default function SearchBar() {
+    return(
+        <View style={styles.header}>
+                <View style={styles.searchbar}>
+                    <MaterialCommunityIcons name="magnify" style={{fontSize:24,}}/>
+                    <TextInput placeholder='Search' style={{fontSize:24, marginLeft: 10, marginRight: 'auto', }} />
                     <MaterialCommunityIcons name="camera-outline" style={{fontSize:24, marginRight: 6, }}/>
                 </View>
                 <MaterialCommunityIcons name="heart-outline" style={{fontSize:24, marginRight: 10,}}/>
         </View>
     )
-}
+}  原來既版本*/ 
 
 const styles = StyleSheet.create({
     header: {

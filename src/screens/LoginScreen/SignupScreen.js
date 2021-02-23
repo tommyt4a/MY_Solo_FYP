@@ -9,13 +9,20 @@ export default class App extends React.Component {
   render(){
     return (
       <View style={styles.container}>
-        <Text style={styles.logo}>TradeYourSelf</Text>
+        <Text style={styles.logo}>SignUp</Text>
+        <View style={styles.inputView} >
+          <TextInput  
+            style={styles.inputText}
+            placeholder="Display name..." 
+            placeholderTextColor="#003f5c"
+            onChangeText={text => this.setState({text})}/>
+        </View>
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
             placeholder="Account..." 
             placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({email:text})}/>
+            onChangeText={text => this.setState({text})}/>
         </View>
         <View style={styles.inputView} >
           <TextInput  
@@ -25,14 +32,26 @@ export default class App extends React.Component {
             placeholderTextColor="#003f5c"
             onChangeText={text => this.setState({password:text})}/>
         </View>
-        <TouchableOpacity>
-          <Text style={styles.forgot}>Forgot Password?</Text>
-        </TouchableOpacity>
+        <View style={styles.inputView} >
+          <TextInput  
+            style={styles.inputText}
+            placeholder="Confirm password..." 
+            placeholderTextColor="#003f5c"
+            onChangeText={text => this.setState({password:text})}/>
+        </View>
+        <View style={styles.inputView} >
+          <TextInput  
+            style={styles.inputText}
+            placeholder="HKID Card Number..." 
+            placeholderTextColor="#003f5c"
+            onChangeText={text => this.setState({password:text})}/>
+        </View>
+        
         <TouchableOpacity style={styles.loginBtn}>
-          <Text style={styles.loginText}>LOGIN</Text>
+          <Text style={styles.loginText}>Signup</Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={styles.signupText}>Signup</Text>
+          <Text style={styles.signupText}>Back To Login</Text>
         </TouchableOpacity>
 
   
@@ -88,4 +107,3 @@ const styles = StyleSheet.create({
     color:"#003f5c"
   }
 });
-
