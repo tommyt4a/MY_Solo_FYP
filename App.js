@@ -9,14 +9,6 @@ import ProductList from './src/screens/ProductScreen/ProductList'
 
 
 
-const ProductStack = createStackNavigator()
-
-function Product (){
-  <Stack.Navigator>
-    <ProductStack.Screen name = "HomeScreen" component = {HomeScreen}/>
-    <ProductStack.Screen name="ProductList" component={ProductList}/>
-  </Stack.Navigator>
-}
 
 
 const Stack = createStackNavigator();
@@ -29,7 +21,7 @@ const App = () => {
       <Stack.Navigator screenOptions={{headerShown: false}}>
         
       <Stack.Screen name="BottomNavigation" component={BottomNavigator} />
-      <Stack.Screen name="ProductStack" component={Product} />
+      
       
       
       

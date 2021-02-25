@@ -33,10 +33,12 @@ const Stack = createStackNavigator();
 const ProductStack = createStackNavigator()
 import ProductList from '../screens/ProductScreen/ProductList'
 
-function Product (){
+const Product = () => {
   return(
-  <Stack.Navigator>
-    <ProductStack.Screen name = "HomeScreen" component = {HomeScreen}/>
+  <Stack.Navigator screenOptions={{
+    headerShown: false
+  }} > 
+    <ProductStack.Screen name = "HomeScreen" component = {HomeScreen} />
     <ProductStack.Screen name="ProductList" component={ProductList}/>
   </Stack.Navigator>)
 }
