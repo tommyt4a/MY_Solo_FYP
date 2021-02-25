@@ -6,6 +6,7 @@ import ChatScreen from './ChatScreen/ChatScreen';
 import CollectionScreen from './CollectionScreen/CollectionScreen';
 import ProfileScreen from './ProfileScreen/ProfileScreen';
 import LoginScreen from './LoginScreen/LoginScreen';
+import ProductList from './ProductScreen/ProductList';
 
 /*
 import ProductScreen from './ProductScreen/ProductScreen';
@@ -31,4 +32,5 @@ export {
     CollectionScreen,
     ChatScreen,
     ProfileScreen,
+    ProductList,
 };

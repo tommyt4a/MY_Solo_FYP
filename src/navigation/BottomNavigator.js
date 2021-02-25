@@ -12,6 +12,7 @@ import {
   CollectionScreen,
   ChatScreen,
   ProfileScreen,
+
 } from '../screens';
 
 import {
@@ -23,7 +24,22 @@ import {
   NAVIGATION_TO_CHAT_SCREEN,
   NAVIGATION_TO_PROFILE_SCREEN,
   
+  
 } from './route';
+
+
+import { createStackNavigator } from "@react-navigation/stack";
+const Stack = createStackNavigator();
+const ProductStack = createStackNavigator()
+import ProductList from '../screens/ProductScreen/ProductList'
+
+function Product (){
+  return(
+  <Stack.Navigator>
+    <ProductStack.Screen name = "HomeScreen" component = {HomeScreen}/>
+    <ProductStack.Screen name="ProductList" component={ProductList}/>
+  </Stack.Navigator>)
+}
 
 const Tab = createBottomTabNavigator();
 
@@ -31,7 +47,8 @@ const BottomNavigator = () => {
   const { theme } = useContext(ThemeContext);
   return (
     <SafeAreaProvider>
-      <NavigationContainer> 
+      
+      
         <Tab.Navigator
         initialRouteName={NAVIGATION_TO_HOME_SCREEN}
         tabBarOptions={{
@@ -40,7 +57,7 @@ const BottomNavigator = () => {
       >
         <Tab.Screen
           name={NAVIGATION_TO_HOME_SCREEN}
-          component={HomeScreen}
+          component={Product}
           options={{
             tabBarLabel: 'Home',
             tabBarIcon: ({ color, size }) => (
@@ -90,7 +107,8 @@ const BottomNavigator = () => {
           }}
         />
       </Tab.Navigator>
-      </NavigationContainer>
+      
+      
     </SafeAreaProvider>
   );
 }
