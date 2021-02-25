@@ -1,12 +1,21 @@
 import React from 'react';
-import { Text, View, SafeAreaView, ScrollView, StyleSheet, Image } from 'react-native';
+import { Text, View, SafeAreaView, ScrollView, StyleSheet, Image, Button } from 'react-native';
 import SearchBar from '../../common/SearchBar';
 import HomeRecommendation from './HomeRecommendation';
 import { TouchableOpacity } from 'react-native'
+import ProductList from '../ProductScreen/ProductList';
+import { createStackNavigator } from "@react-navigation/stack";
+
+
+
+
 
 class HomeScreen extends React.Component{
     render(){
+        
         return(
+        
+            
             <SafeAreaView style={{flex: 1}}>
                 <View style={styles.main}>
                 
@@ -17,8 +26,9 @@ class HomeScreen extends React.Component{
                     <ScrollView style={styles.scrollview}>
 
                         <View style={styles.container}>
-                            <TouchableOpacity >                           
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate(ProductList)} >                           
                                 <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
+                                 
                             </TouchableOpacity>
                             
 
@@ -132,6 +142,7 @@ class HomeScreen extends React.Component{
                         </View>
                   
                     </ScrollView>
+                    
 
                     
 
@@ -139,6 +150,9 @@ class HomeScreen extends React.Component{
 
                 </View>
             </SafeAreaView>
+           
+            
+    
         )
     }
 }
@@ -200,4 +214,6 @@ const styles = StyleSheet.create({
 
 });
 
+
 export default HomeScreen;
+
