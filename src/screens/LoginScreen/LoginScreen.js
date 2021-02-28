@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import SignupScreen from '../LoginScreen/SignupScreen';
+import firebase from '@react-native-firebase/firestore';
 
  class LoginScreen extends React.Component {
   state={
@@ -31,7 +33,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
         <TouchableOpacity style={styles.loginBtn}>
           <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate(SignupScreen)}>
           <Text style={styles.signupText}>Signup</Text>
         </TouchableOpacity>
 
