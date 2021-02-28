@@ -28,6 +28,7 @@ import {
 } from './route';
 import ProductList from '../screens/ProductScreen/ProductList'
 import LoginScreen from '../screens/LoginScreen/LoginScreen'
+import SignupScreen from '../screens/LoginScreen/SignupScreen';
 import { createStackNavigator } from "@react-navigation/stack";
 
 
@@ -43,6 +44,7 @@ const Product = () => {
     <ProductStack.Screen name = "HomeScreen" component = {HomeScreen} />
     <ProductStack.Screen name = "ProductList" component= {ProductList}/>
     <ProductStack.Screen name = "LoginScreen" component= {LoginScreen}/>
+    <ProductStack.Screen name = "SignupScreen" component= {SignupScreen}/>
     
   </Stack.Navigator>)
 }

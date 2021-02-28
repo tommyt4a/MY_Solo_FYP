@@ -1,11 +1,48 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import LoginScreen from './LoginScreen';
+import firestore from '@react-native-firebase/firestore';
 
 export default class SignupScreen extends React.Component {
   state={
-    email:"",
+    account:"",
     password:""
   }
+
+  signupuser = () => {
+    if(this.state.displayname === '' || this.state.account === ''|| this.state.password === ''|| this.state.confirmpassword === ''|| this.state.hkiid === '') 
+    {
+      Alert.alert('請輸入所有欄位')
+    } else if(this.state.password!=this.state.confirmpassword) {
+      Alert.alert('請確認密碼')
+    }else if (this.state.account.length < 8){
+    Alert.alert('帳號長度不足')
+    }else if (this.state.password.length < 6){
+      Alert.alert('密碼長度不足')
+    }else if (this.state.displayname.length < 8){
+      Alert.alert('顯示名稱長度不足')
+    }
+    firestore()
+  .collection('user')
+  .add({
+    account: account,
+    displayname: displayname,
+    password: password,
+    hkid: hkid,
+
+  })
+  .then(() => {
+    console.log('User added!');
+  });
+
+
+  }
+  
+
+
+
+  
+
   render(){
     return (
       <View style={styles.container}>
@@ -13,44 +50,51 @@ export default class SignupScreen extends React.Component {
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
-            placeholder="Display name..." 
+            placeholder="顯示名稱(最少8個字元)..." 
             placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({text})}/>
+            onChangeText={text => this.setState({displayname:text})}
+            maxLength={20}/>
         </View>
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
-            placeholder="Account..." 
+            placeholder="帳號(最少8個字元)..." 
             placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({text})}/>
+            onChangeText={text => this.setState({account:text})}
+            maxLength={20}/>
         </View>
         <View style={styles.inputView} >
           <TextInput  
-            secureTextEntry
+            
             style={styles.inputText}
-            placeholder="Password..." 
+            placeholder="密碼(最少6個字元)..." 
             placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({password:text})}/>
-        </View>
-        <View style={styles.inputView} >
-          <TextInput  
-            style={styles.inputText}
-            placeholder="Confirm password..." 
-            placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({password:text})}/>
+            onChangeText={text => this.setState({password:text})}
+            maxLength={20}/>
         </View>
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
-            placeholder="HKID Card Number..." 
+            placeholder="確認密碼(最少6個字元)..." 
             placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({password:text})}/>
+            onChangeText={text => this.setState({confirmpassword:text})}
+            maxLength={20}/>
+        </View>
+        <View style={styles.inputView} >
+          <TextInput  
+            style={styles.inputText}
+            placeholder="香港身份證號碼..." 
+            placeholderTextColor="#003f5c"
+            onChangeText={text => this.setState({hkid:text})}
+            
+            maxLength={11}/>
         </View>
         
-        <TouchableOpacity style={styles.loginBtn}>
+        
+        <TouchableOpacity style={styles.loginBtn} onPress={() => this.signupuser()}>
           <Text style={styles.loginText}>Signup</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate(LoginScreen)}>
           <Text style={styles.signupText}>Back To Login</Text>
         </TouchableOpacity>
 

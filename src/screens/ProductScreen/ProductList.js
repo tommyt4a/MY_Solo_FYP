@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, SafeAreaView, ScrollView, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import SearchBar from '../../common/SearchBar';
 import LoginScreen from '../LoginScreen/LoginScreen';
-import { createStackNavigator } from "@react-navigation/stack";
+
 import SignupScreen from '../LoginScreen/SignupScreen';
 
 
@@ -16,6 +16,7 @@ class ProductList extends React.Component {
                 
                 <View>
                 <Text>HI</Text>
+
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate(LoginScreen)} >                           
                                 <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
                                  
