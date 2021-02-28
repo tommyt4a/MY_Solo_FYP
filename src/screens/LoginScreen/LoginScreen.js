@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
-export default class App extends React.Component {
+ class LoginScreen extends React.Component {
   state={
     email:"",
     password:""
@@ -89,3 +89,4 @@ const styles = StyleSheet.create({
   }
 });
 
+export default LoginScreen ;

@@ -9,6 +9,7 @@ export const NAVIGATION_TO_SEARCH_SCREEN = 'SearchScreen';
 export const NAVIGATION_TO_PRODUCT_SCREEN = 'ProductList';
 
 
+
 /*
 export const NAVIGATION_TO_PRODUCT_SCREEN = 'ProductDetailScreen';
 export const NAVIGATION_TO_ORDERS_SCREEN = 'OrdersScreen';

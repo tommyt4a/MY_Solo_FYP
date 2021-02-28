@@ -26,12 +26,14 @@ import {
   
   
 } from './route';
-
-
+import ProductList from '../screens/ProductScreen/ProductList'
+import LoginScreen from '../screens/LoginScreen/LoginScreen'
 import { createStackNavigator } from "@react-navigation/stack";
+
+
 const Stack = createStackNavigator();
 const ProductStack = createStackNavigator()
-import ProductList from '../screens/ProductScreen/ProductList'
+
 
 const Product = () => {
   return(
@@ -39,7 +41,9 @@ const Product = () => {
     headerShown: false
   }} > 
     <ProductStack.Screen name = "HomeScreen" component = {HomeScreen} />
-    <ProductStack.Screen name="ProductList" component={ProductList}/>
+    <ProductStack.Screen name = "ProductList" component= {ProductList}/>
+    <ProductStack.Screen name = "LoginScreen" component= {LoginScreen}/>
+    
   </Stack.Navigator>)
 }
 

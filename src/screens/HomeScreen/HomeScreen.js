@@ -32,7 +32,7 @@ class HomeScreen extends React.Component{
                             </TouchableOpacity>
                             
 
-                            <TouchableOpacity >                           
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate(ProductList)}>                           
                                 <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
                             </TouchableOpacity>
 
