@@ -1,16 +1,26 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import LoginScreen from './LoginScreen';
-import firestore from '@react-native-firebase/firestore';
+
+import firebase from 'firebase';
+import 'firebase/firestore';
+
+
+
+
 
 export default class SignupScreen extends React.Component {
   state={
     account:"",
-    password:""
+    password:"",
+    displayname:"",
+    hkid:""
   }
 
+  
+
   signupuser = () => {
-    if(this.state.displayname === '' || this.state.account === ''|| this.state.password === ''|| this.state.confirmpassword === ''|| this.state.hkiid === '') 
+    if(this.state.displayname === '' || this.state.account === ''|| this.state.password === ''|| this.state.confirmpassword === ''|| this.state.hkid === '') 
     {
       Alert.alert('請輸入所有欄位')
     } else if(this.state.password!=this.state.confirmpassword) {
@@ -21,19 +31,20 @@ export default class SignupScreen extends React.Component {
       Alert.alert('密碼長度不足')
     }else if (this.state.displayname.length < 8){
       Alert.alert('顯示名稱長度不足')
-    }
-    firestore()
-  .collection('user')
-  .add({
-    account: account,
-    displayname: displayname,
-    password: password,
-    hkid: hkid,
+    }else{
+     firebase.firestore().collection('user').add({
+    account: this.state.account,
+    displayname: this.state.displayname,
+    password: this.state.password,
+    hkid: this.state.hkid,
+  
 
-  })
-  .then(() => {
-    console.log('User added!');
+  }).then(() => {
+    Alert.alert('成功註冊');
   });
+
+  
+  };
 
 
   }

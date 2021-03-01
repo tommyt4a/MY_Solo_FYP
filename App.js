@@ -5,8 +5,23 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import LoginScreen, { HomeScreen } from './src/screens';
 import { createStackNavigator } from "@react-navigation/stack";
-import ProductList from './src/screens/ProductScreen/ProductList'
+import ProductList from './src/screens/ProductScreen/ProductList';
 
+import * as firebase from 'firebase';
+const firebaseConfig = {
+  apiKey: "AIzaSyBRgZVw_Inp4hu4zDllJZf5xF-VzPgtXpk",
+  authDomain: "myfyp-d024f.firebaseapp.com",
+  databaseURL: "https://myfyp-d024f-default-rtdb.firebaseio.com",
+  projectId: "myfyp-d024f",
+  storageBucket: "myfyp-d024f.appspot.com",
+  messagingSenderId: "1027251559937",
+  appId: "1:1027251559937:web:46e1ea80055231d75b6a00",
+  measurementId: "G-5PSHH9FJLS"
+};
+
+if (firebase.apps.length === 0){
+  firebase.initializeApp(firebaseConfig);
+}
 
 
 
