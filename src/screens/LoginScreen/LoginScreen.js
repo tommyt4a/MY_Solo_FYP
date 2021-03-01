@@ -5,7 +5,7 @@ import firebase from '@react-native-firebase/firestore';
 
  class LoginScreen extends React.Component {
   state={
-    email:"",
+    account:"",
     password:""
   }
   render(){
