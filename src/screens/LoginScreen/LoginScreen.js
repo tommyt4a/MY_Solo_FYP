@@ -46,7 +46,7 @@ import firebase from '@react-native-firebase/firestore';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f8ff',
+    
     alignItems: 'center',
     justifyContent: 'center',
   },

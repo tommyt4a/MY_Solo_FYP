@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ScrollView, SafeAreaView  } from 'react-native';
 import LoginScreen from './LoginScreen';
 
 import firebase from 'firebase';
 import 'firebase/firestore';
+
 
 
 
@@ -31,9 +32,17 @@ export default class SignupScreen extends React.Component {
       Alert.alert('密碼長度不足')
     }else if (this.state.displayname.length < 8){
       Alert.alert('顯示名稱長度不足')
-    }else{
-     firebase.firestore().collection('user').add({
-    account: this.state.account,
+    }else {firebase.firestore().collection('user').doc(this.state.account).get().then((doc) => {
+      if (doc.exists){
+        Alert.alert("doc exist");
+      }
+    })}
+
+    
+    
+    /*else{
+     firebase.firestore().collection('user').doc(this.state.account).set({
+    
     displayname: this.state.displayname,
     password: this.state.password,
     hkid: this.state.hkid,
@@ -41,13 +50,10 @@ export default class SignupScreen extends React.Component {
 
   }).then(() => {
     Alert.alert('成功註冊');
-  });
-
-  
-  };
-
+  });};*/
 
   }
+  
   
 
 
@@ -56,7 +62,10 @@ export default class SignupScreen extends React.Component {
 
   render(){
     return (
+      <SafeAreaView style={{flex: 1}}>
+        <ScrollView >
       <View style={styles.container}>
+         
         <Text style={styles.logo}>SignUp</Text>
         <View style={styles.inputView} >
           <TextInput  
@@ -108,19 +117,25 @@ export default class SignupScreen extends React.Component {
         <TouchableOpacity onPress={()=>this.props.navigation.navigate(LoginScreen)}>
           <Text style={styles.signupText}>Back To Login</Text>
         </TouchableOpacity>
+        
 
   
       </View>
+      </ScrollView>
+      </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
+    marginTop:50,
     flex: 1,
-    backgroundColor: '#f8f8ff',
+    
     alignItems: 'center',
     justifyContent: 'center',
+    
+   
   },
   logo:{
     fontWeight:"bold",
@@ -152,7 +167,7 @@ const styles = StyleSheet.create({
     height:50,
     alignItems:"center",
     justifyContent:"center",
-    marginTop:40,
+    marginTop:30,
     marginBottom:10
   },
   loginText:{
@@ -160,5 +175,9 @@ const styles = StyleSheet.create({
   },
   signupText:{
     color:"#003f5c"
-  }
+  },
+  scrollview:{
+    
+    
+  },
 });

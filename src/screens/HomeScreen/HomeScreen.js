@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
 
     },
     headimage:{
-        
+        marginTop:10,
         width: 350,
         height: 100,
     },
