@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ScrollView, SafeAreaView  } from 'react-native';
 import LoginScreen from './LoginScreen';
+import HomeScreen from '../HomeScreen/HomeScreen';
+
 
 import firebase from 'firebase';
 import 'firebase/firestore';
@@ -24,35 +26,48 @@ export default class SignupScreen extends React.Component {
     if(this.state.displayname === '' || this.state.account === ''|| this.state.password === ''|| this.state.confirmpassword === ''|| this.state.hkid === '') 
     {
       Alert.alert('請輸入所有欄位')
-    } else if(this.state.password!=this.state.confirmpassword) {
+    } 
+    else if(this.state.password!=this.state.confirmpassword) {
       Alert.alert('請確認密碼')
-    }else if (this.state.account.length < 8){
+    }
+    else if (this.state.account.length < 8){
     Alert.alert('帳號長度不足')
-    }else if (this.state.password.length < 6){
+    }
+    else if (this.state.password.length < 6){
       Alert.alert('密碼長度不足')
-    }else if (this.state.displayname.length < 8){
+    }
+    else if (this.state.displayname.length < 8){
       Alert.alert('顯示名稱長度不足')
-    }else {firebase.firestore().collection('user').doc(this.state.account).get().then((doc) => {
+    }
+    else {firebase.firestore().collection('user').doc(this.state.account).get().then((doc) => {
       if (doc.exists){
-        Alert.alert("doc exist");
-      }
-    })}
-
+        Alert.alert("帳號己存在");
+    }
+      else {firebase.firestore().collection('user').where("hkid", '==',this.state.hkid ).get().then(querySnapshot => {
+        if (querySnapshot.size!=0){
+          Alert.alert("身份證己存在");
+        }else {firebase.firestore().collection('user').where("displayname", '==',this.state.displayname ).get().then(querySnapshot => {
+          if (querySnapshot.size!=0){
+            Alert.alert("顯示名稱己存在");
+          }
+        else{
+          firebase.firestore().collection('user').doc(this.state.account).set({
+         
+         displayname: this.state.displayname,
+         password: this.state.password,
+         hkid: this.state.hkid,
+       
+     
+       }).then(() => {
+         
+         Alert.alert('成功註冊，請登入'
+         );
+       });};
+    })}})
     
-    
-    /*else{
-     firebase.firestore().collection('user').doc(this.state.account).set({
-    
-    displayname: this.state.displayname,
-    password: this.state.password,
-    hkid: this.state.hkid,
-  
 
-  }).then(() => {
-    Alert.alert('成功註冊');
-  });};*/
 
-  }
+  }})}}
   
   
 
