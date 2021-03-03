@@ -4,6 +4,7 @@ import LoginScreen from './LoginScreen';
 import HomeScreen from '../HomeScreen/HomeScreen';
 
 
+
 import firebase from 'firebase';
 import 'firebase/firestore';
 
@@ -59,6 +60,7 @@ export default class SignupScreen extends React.Component {
        
      
        }).then(() => {
+        
          
          Alert.alert('成功註冊，請登入'
          );
@@ -81,7 +83,7 @@ export default class SignupScreen extends React.Component {
         <ScrollView >
       <View style={styles.container}>
          
-        <Text style={styles.logo}>SignUp</Text>
+        <Text style={styles.logo}>註冊</Text>
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
@@ -127,10 +129,10 @@ export default class SignupScreen extends React.Component {
         
         
         <TouchableOpacity style={styles.loginBtn} onPress={() => this.signupuser()}>
-          <Text style={styles.loginText}>Signup</Text>
+          <Text style={styles.loginText}>註冊</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>this.props.navigation.navigate(LoginScreen)}>
-          <Text style={styles.signupText}>Back To Login</Text>
+          <Text style={styles.signupText}>返回登入頁面</Text>
         </TouchableOpacity>
         
 
