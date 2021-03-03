@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import SignupScreen from '../LoginScreen/SignupScreen';
-import firebase from '@react-native-firebase/firestore';
+import SignupScreen from './SignupScreen';
+import ForgotScreen from './ForgotScreen';
+
 
  class LoginScreen extends React.Component {
   state={
@@ -27,14 +28,14 @@ import firebase from '@react-native-firebase/firestore';
             placeholderTextColor="#003f5c"
             onChangeText={text => this.setState({password:text})}/>
         </View>
-        <TouchableOpacity>
-          <Text style={styles.forgot}>Forgot Password?</Text>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate(ForgotScreen)}>
+          <Text style={styles.forgot}>忘記密碼?</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.loginBtn}>
-          <Text style={styles.loginText}>LOGIN</Text>
+          <Text style={styles.loginText}>登入</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>this.props.navigation.navigate(SignupScreen)}>
-          <Text style={styles.signupText}>Signup</Text>
+          <Text style={styles.signupText}>註冊</Text>
         </TouchableOpacity>
 
   

@@ -6,6 +6,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import LoginScreen, { HomeScreen } from './src/screens';
 import { createStackNavigator } from "@react-navigation/stack";
 import ProductList from './src/screens/ProductScreen/ProductList';
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware} from 'redux'
+import rootReducer from './redux/reducers'
+import thunk from 'redux-thunk'
+import main from './redux/main'
+const store=createStore(rootReducer, applyMiddleware(thunk))
 
 import * as firebase from 'firebase';
 const firebaseConfig = {
@@ -32,6 +38,7 @@ const Stack = createStackNavigator();
 
 const App = () => {
   return (
+    <Provider store={store}>
     <ThemeProvider theme={LightTheme}>
       <NavigationContainer> 
       <Stack.Navigator screenOptions={{headerShown: false}}>
@@ -52,6 +59,7 @@ const App = () => {
       
     
       </ThemeProvider>
+      </Provider>
    
   );
 }

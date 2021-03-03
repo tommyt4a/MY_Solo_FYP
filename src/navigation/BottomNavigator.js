@@ -29,6 +29,7 @@ import {
 import ProductList from '../screens/ProductScreen/ProductList'
 import LoginScreen from '../screens/LoginScreen/LoginScreen'
 import SignupScreen from '../screens/LoginScreen/SignupScreen';
+import ForgotScreen from '../screens/LoginScreen/ForgotScreen'
 import { createStackNavigator } from "@react-navigation/stack";
 
 
@@ -45,6 +46,7 @@ const Product = () => {
     <ProductStack.Screen name = "ProductList" component= {ProductList}/>
     <ProductStack.Screen name = "LoginScreen" component= {LoginScreen}/>
     <ProductStack.Screen name = "SignupScreen" component= {SignupScreen}/>
+    <ProductStack.Screen name = "ForgotScreen" component= {ForgotScreen}/>
     
   </Stack.Navigator>)
 }
