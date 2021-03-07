@@ -7,11 +7,13 @@ import LoginScreen, { HomeScreen } from './src/screens';
 import { createStackNavigator } from "@react-navigation/stack";
 import ProductList from './src/screens/ProductScreen/ProductList';
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware} from 'redux'
+
 import rootReducer from './redux/reducers'
 import thunk from 'redux-thunk'
 import main from './redux/main'
-const store=createStore(rootReducer, applyMiddleware(thunk))
+import { createStore } from 'redux';
+import user from './redux/reducers/users'
+const store = createStore(user);
 
 import * as firebase from 'firebase';
 const firebaseConfig = {

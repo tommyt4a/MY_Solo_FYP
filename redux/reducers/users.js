@@ -1,10 +1,27 @@
+import { combineReducers } from 'redux';
+
+
 const initialState = {
-    currentuser: null
+    useraccount: ""
 }
 
-export const user = ( state = initialState , action ) => {
-    return{
-        ...state,
-        currentuser: action.currentuser
+ function user ( state = initialState , action )  {
+    switch(action.type){
+        case 'LOGIN':
+            return  {
+                useraccount: action.useraccount
+            }
+            
+        case 'LOGOUT':
+            return {
+                useraccount: ""
+            }
+        default:
+            return state
+                
     }
 }
+
+export default combineReducers({
+     userloginaccount: user
+})

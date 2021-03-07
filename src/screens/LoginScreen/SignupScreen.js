@@ -22,6 +22,7 @@ export default class SignupScreen extends React.Component {
   }
 
   
+  
 
   signupuser = () => {
     if(this.state.displayname === '' || this.state.account === ''|| this.state.password === ''|| this.state.confirmpassword === ''|| this.state.hkid === '') 
@@ -62,8 +63,8 @@ export default class SignupScreen extends React.Component {
        }).then(() => {
         
          
-         Alert.alert('成功註冊，請登入'
-         );
+         Alert.alert("成功註冊，請登入");
+
        });};
     })}})
     

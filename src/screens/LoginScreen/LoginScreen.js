@@ -1,7 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import SignupScreen from './SignupScreen';
 import ForgotScreen from './ForgotScreen';
+import HomeScreen from '../HomeScreen/HomeScreen'
+
+import firebase from 'firebase';
+import 'firebase/firestore';
 
 
  class LoginScreen extends React.Component {
@@ -9,6 +13,34 @@ import ForgotScreen from './ForgotScreen';
     account:"",
     password:""
   }
+
+  loginuser = () =>{
+    if(this.state.account === '' || this.state.password === ''){
+      Alert.alert('請輸入所有欄位');
+    }else{firebase.firestore().collection('user').doc(this.state.account).get().then((doc) => {
+      if (!doc.exists){
+        Alert.alert("帳號不存在，請重新輸入");
+    }else (firebase.firestore().collection('user').doc(this.state.account).get().then((doc) =>{
+      {
+        if(doc.get('password')!=this.state.password){
+          Alert.alert("密碼錯誤，請重新輸入");
+
+        }else{
+          
+          
+          this.props.navigation.navigate(HomeScreen)
+          
+        }
+        
+      }
+    }))
+        
+    
+  })}
+
+    }
+  
+
   render(){
     return (
       <View style={styles.container}>
@@ -18,7 +50,7 @@ import ForgotScreen from './ForgotScreen';
             style={styles.inputText}
             placeholder="Account..." 
             placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({email:text})}/>
+            onChangeText={text => this.setState({account:text})}/>
         </View>
         <View style={styles.inputView} >
           <TextInput  
@@ -31,7 +63,7 @@ import ForgotScreen from './ForgotScreen';
         <TouchableOpacity onPress={()=>this.props.navigation.navigate(ForgotScreen)}>
           <Text style={styles.forgot}>忘記密碼?</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.loginBtn}>
+        <TouchableOpacity style={styles.loginBtn} onPress={() => this.loginuser()}>
           <Text style={styles.loginText}>登入</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>this.props.navigation.navigate(SignupScreen)}>
@@ -92,4 +124,5 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LoginScreen ;
+export default LoginScreen;
+

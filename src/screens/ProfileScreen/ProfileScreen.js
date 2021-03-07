@@ -1,25 +1,28 @@
 import React from 'react';
 import { Text, View, Button } from 'react-native';
 import SignupScreen from '../LoginScreen/SignupScreen'
-import global from '../../../global'
+
+import { connect } from 'react-redux';
 
 
-function add(){
-    foo++;
 
-}
 
 class ProfileScreen extends React.Component{
     render(){
         return(
             <View style={{}}>
-                <Button title="AAAAAA" onPress={add()}>
+                
                     
-                </Button>
-                <Text>{add()}</Text>
+                
+                <Text></Text>
             </View>
         )
     }
 }
 
-export default ProfileScreen;
+const mapStateToProps = (state) => {
+    const { userloginaccount } = state
+    return { userloginaccount }
+  };
+
+  export default connect(mapStateToProps)(ProfileScreen);
