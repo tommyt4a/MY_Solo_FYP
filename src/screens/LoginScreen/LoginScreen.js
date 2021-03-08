@@ -3,16 +3,23 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'reac
 import SignupScreen from './SignupScreen';
 import ForgotScreen from './ForgotScreen';
 import HomeScreen from '../HomeScreen/HomeScreen'
+import ProfileScreen from '../ProfileScreen/ProfileScreen'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import firebase from 'firebase';
 import 'firebase/firestore';
 
 
  class LoginScreen extends React.Component {
-  state={
-    account:"",
-    password:""
+  constructor(props){
+    super(props);
+    this.state={
+      account:"",
+      password:"",
+    }
   }
+
+  
 
   loginuser = () =>{
     if(this.state.account === '' || this.state.password === ''){
@@ -27,21 +34,34 @@ import 'firebase/firestore';
 
         }else{
           
+          console.log(this.state.account)
+          AsyncStorage.setItem('useraccount',JSON.stringify(this.state.account))
+          AsyncStorage.getItem('useraccount',(err,user) =>{
+            console.log(JSON.parse(user))
+          }) 
+          
+          
           
           this.props.navigation.navigate(HomeScreen)
+          }
+          
+          
           
         }
         
-      }
-    }))
+      })
+    )})
         
     
-  })}
+  }}
 
-    }
+    
   
 
   render(){
+
+    
+
     return (
       <View style={styles.container}>
         <Text style={styles.logo}>TradeYourSelf</Text>
