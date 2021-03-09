@@ -2,6 +2,9 @@ import React, { useEffect , useState} from 'react';
 import { Text, View, Button, Alert , SafeAreaView, StyleSheet} from 'react-native';
 import SignupScreen from '../LoginScreen/SignupScreen'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import firebase from 'firebase';
+import 'firebase/firestore';
+
 
 
 
@@ -9,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class ProfileScreen extends React.Component{
   state={
+    username: '',
     useraccount:''
     
   }
@@ -17,7 +21,23 @@ class ProfileScreen extends React.Component{
     var value = await AsyncStorage.getItem('useraccount');
     if(value!==null){
       this.setState({useraccount: value});
+      
+      firebase.firestore().collection('user').doc(value).get().then((doc)=>{
+        if(doc.exists){
+          
+         this.setState({username: doc.get('displayname')})
+ 
+        }
+ 
+     })
+     
+      
     }
+
+     
+      
+    
+    
   }
   
   
@@ -40,6 +60,8 @@ this._load();
           <SafeAreaView style={{flex: 1}}>
             <View style={styles.container}>
                 <View style={styles.user}>
+                <Text style = {styles.username}>Username: {this.state.username}</Text>
+                <Text style = {styles.useraccount}>Account: {this.state.useraccount}</Text>
 
                 </View>
 
@@ -47,7 +69,7 @@ this._load();
                   
                 </View>
                   
-                <Text>aaa{this.state.useraccount}</Text>
+                
                 
             </View>
 
@@ -68,6 +90,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     
    
+  },
+  user:{
+    flex:1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  product:{
+    flex:3,
+  },
+  username:{
+    fontSize: 20,
+    
+  },
+  useraccount:{
+    fontSize: 10,
+    
   },
 
 })

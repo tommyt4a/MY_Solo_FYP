@@ -19,7 +19,13 @@ import 'firebase/firestore';
     }
   }
 
-  
+  addlogin = async () =>{
+    try{
+      await AsyncStorage.setItem('useraccount',this.state.account)
+    } catch(err){
+      console.log(err)
+    }
+  }
 
   loginuser = () =>{
     if(this.state.account === '' || this.state.password === ''){
@@ -34,10 +40,10 @@ import 'firebase/firestore';
 
         }else{
           
-          console.log(this.state.account)
-          AsyncStorage.setItem('useraccount',JSON.stringify(this.state.account))
+          
+          this.addlogin()
           AsyncStorage.getItem('useraccount',(err,user) =>{
-            console.log(JSON.parse(user))
+            console.log((user))
           }) 
           
           

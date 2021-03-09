@@ -15,10 +15,10 @@ import 'firebase/firestore';
 
 export default class SignupScreen extends React.Component {
   state={
-    account:"",
-    password:"",
-    displayname:"",
-    hkid:""
+    account:'',
+    password:'',
+    displayname:'',
+    hkid:''
   }
 
   
