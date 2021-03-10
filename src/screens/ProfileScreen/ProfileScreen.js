@@ -2,9 +2,10 @@ import React, { useEffect , useState} from 'react';
 import { Text, View, Button, Alert , SafeAreaView, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import SignupScreen from '../LoginScreen/SignupScreen'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import HomeScreen from '../HomeScreen/HomeScreen'
+import LoginScreen from '../LoginScreen/LoginScreen'
 import firebase from 'firebase';
 import 'firebase/firestore';
-import { ScrollView } from 'react-native-gesture-handler';
 
 
 
@@ -14,11 +15,17 @@ import { ScrollView } from 'react-native-gesture-handler';
 class ProfileScreen extends React.Component{
   
   state ={
-      username: '',
+    username: '',
     useraccount:'',
-    activeindex: 0
+    activeindex: 0,
+    token: 0,
+    token2:0,
+    number: 1,
+    
     
   }
+
+  
 
   segmentClicked = (index)=>{
     this.setState({activeindex: index})
@@ -31,6 +38,8 @@ class ProfileScreen extends React.Component{
         <View>
           <Text>我的物品</Text>
         </View>
+
+        
       )
     }else if(this.state.activeindex == 1)
     {
@@ -41,45 +50,14 @@ class ProfileScreen extends React.Component{
       )
     }
   }
-  
 
-  _load = async () =>{
-    var value = await AsyncStorage.getItem('useraccount');
-    if(value!==null){
-      this.setState({useraccount: value});
-      
-      firebase.firestore().collection('user').doc(value).get().then((doc)=>{
-        if(doc.exists){
-          
-         this.setState({username: doc.get('displayname')})
- 
-        }
- 
-     })
-     
-      
-    }
-   
-  }
-  
-  
-componentDidMount(){
-this._load();
-}
-     
-    render(){
+  islogin = () =>{
+    if(this.state.token==1){
+      return(
 
-      
-
-      
-
-      
-
-        return(
-          <SafeAreaView style={{flex: 1}}>
-            <View style={styles.container}>
-              <View style={styles.settinghead}>
-                <TouchableOpacity style={styles.settingbutton}>
+        <View style={styles.container}>
+            <View style={styles.settinghead}>
+                <TouchableOpacity style={styles.settingbutton} onPress={() => this.logout()}>
                   <Text style={styles.logout}>登出</Text>
                 </TouchableOpacity>
 
@@ -120,7 +98,84 @@ this._load();
                 
                 
             </View>
+        
+        
+      )
 
+    }else{
+      return(
+        <View style={styles.loginbutton}>
+          <Text>請先前往登入</Text>
+          <TouchableOpacity style={styles.gobutton} onPress={()=>this.props.navigation.navigate(LoginScreen)}>
+            <Text>前往</Text>
+          </TouchableOpacity>
+        </View>
+
+      )
+      
+
+    }
+  }
+
+
+  
+
+  load = async () =>{
+    
+      var value = await AsyncStorage.getItem('useraccount');
+    if(value!==null){
+      
+      this.setState({useraccount: value});
+      
+      firebase.firestore().collection('user').doc(value).get().then((doc)=>{
+        if(doc.exists){
+          
+         this.setState({username: doc.get('displayname')})
+ 
+        }
+ 
+     })
+     var check = await AsyncStorage.getItem('token');
+     
+    this.setState({token: check});
+    console.log(check)
+      
+    }
+}
+
+  
+
+  logout = async () =>{
+    await AsyncStorage.setItem('token','0')
+    this.setState({number: 0})
+    console.log(this.state.number)
+    //this.props.navigation.navigate(HomeScreen)
+  }
+
+  
+  
+  componentDidUpdate(){
+    if(this.state.number== 0){
+      
+      this.setState({number: 1})
+      this.load();
+    }
+  }
+  
+componentDidMount(){
+this.load();
+
+}
+     
+    render(){
+     
+
+
+      
+
+        return(
+          <SafeAreaView style={{flex: 1}}>
+            {this.islogin()}
           </SafeAreaView>
 
           
@@ -173,6 +228,22 @@ const styles = StyleSheet.create({
     fontSize: 10,
     
   },
+  loginbutton:{
+    flex:1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  gobutton:{
+    width:"80%",
+    backgroundColor:"#fb5b5a",
+    borderRadius:25,
+    height:50,
+    alignItems:"center",
+    justifyContent:"center",
+    marginTop:40,
+    marginBottom:10
+  }
 
 })
 

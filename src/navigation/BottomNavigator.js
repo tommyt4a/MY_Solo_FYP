@@ -48,8 +48,12 @@ const Product = () => {
     <ProductStack.Screen name = "SignupScreen" component= {SignupScreen}/>
     <ProductStack.Screen name = "ForgotScreen" component= {ForgotScreen}/>
     
+    
   </Stack.Navigator>)
 }
+
+
+
 
 const Tab = createBottomTabNavigator();
 
@@ -69,7 +73,7 @@ const BottomNavigator = () => {
           name={NAVIGATION_TO_HOME_SCREEN}
           component={Product}
           options={{
-            tabBarLabel: 'Home',
+            tabBarLabel: '主頁',
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="home" color={color} size={size} />
             ),
@@ -79,7 +83,7 @@ const BottomNavigator = () => {
           name={NAVIGATION_TO_CATALOG_SCREEN}
           component={CatalogScreen}
           options={{
-            tabBarLabel: 'Search',
+            tabBarLabel: '搜尋',
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="magnify" color={color} size={size} />
             ),
@@ -89,7 +93,7 @@ const BottomNavigator = () => {
           name={NAVIGATION_TO_COLLECTION_SCREEN}
           component={CollectionScreen}
           options={{
-            tabBarLabel: 'Collection',
+            tabBarLabel: '上架貨物',
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="plus-box" color={color} size={size} />
             ),
@@ -99,7 +103,7 @@ const BottomNavigator = () => {
           name={NAVIGATION_TO_CHAT_SCREEN}
           component={ChatScreen}
           options={{
-            tabBarLabel: 'Chat',
+            tabBarLabel: '聊天',
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="chat" color={color} size={size} />
             ),
@@ -110,7 +114,7 @@ const BottomNavigator = () => {
           name={NAVIGATION_TO_PROFILE_SCREEN}
           component={ProfileScreen}
           options={{
-            tabBarLabel: 'Profile',
+            tabBarLabel: '個人資料',
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="account" color={color} size={size} />
             ),

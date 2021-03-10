@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import SignupScreen from './SignupScreen';
 import ForgotScreen from './ForgotScreen';
@@ -25,7 +25,19 @@ import 'firebase/firestore';
     } catch(err){
       console.log(err)
     }
+
+  
+    
   }
+
+  addtoken = async () =>{
+    try{
+      await AsyncStorage.setItem('token','1')
+    } catch(err){
+      console.log(err)
+  }
+}
+
 
   loginuser = () =>{
     if(this.state.account === '' || this.state.password === ''){
@@ -40,7 +52,7 @@ import 'firebase/firestore';
 
         }else{
           
-          
+          this.addtoken()
           this.addlogin()
           AsyncStorage.getItem('useraccount',(err,user) =>{
             console.log((user))
@@ -66,7 +78,6 @@ import 'firebase/firestore';
 
   render(){
 
-    
 
     return (
       <View style={styles.container}>
