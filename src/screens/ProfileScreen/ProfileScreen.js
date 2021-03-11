@@ -10,6 +10,7 @@ import 'firebase/firestore';
 
 
 
+
  
 
 class ProfileScreen extends React.Component{
@@ -24,6 +25,8 @@ class ProfileScreen extends React.Component{
     
     
   }
+
+  
 
   
 
@@ -117,7 +120,12 @@ class ProfileScreen extends React.Component{
     }
   }
 
-
+loadcheck = async () =>{
+  var check = await AsyncStorage.getItem('token');
+     
+    this.setState({token: check});
+    console.log(check)
+}
   
 
   load = async () =>{
@@ -163,7 +171,12 @@ class ProfileScreen extends React.Component{
   }
   
 componentDidMount(){
-this.load();
+  
+  const circle = () =>{
+    this.loadcheck()
+  }
+  setInterval(circle,3000)
+
 
 }
      

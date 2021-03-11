@@ -7,12 +7,13 @@ import LoginScreen, { HomeScreen } from './src/screens';
 import { createStackNavigator } from "@react-navigation/stack";
 import ProductList from './src/screens/ProductScreen/ProductList';
 import { Provider } from 'react-redux'
-
+import { LogBox } from 'react-native';
 import rootReducer from './redux/reducers'
 import thunk from 'redux-thunk'
 import main from './redux/main'
 import { createStore } from 'redux';
 import user from './redux/reducers/users'
+
 const store = createStore(user);
 
 import * as firebase from 'firebase';
@@ -32,7 +33,7 @@ if (firebase.apps.length === 0){
 }
 
 
-
+LogBox.ignoreAllLogs();
 
 
 const Stack = createStackNavigator();
@@ -51,7 +52,7 @@ const App = () => {
       
       
       
-
+     
 
       </Stack.Navigator>
       </NavigationContainer> 
