@@ -1,13 +1,11 @@
 import React, { useEffect , useState} from 'react';
-import { Text, View, Button, Alert , SafeAreaView, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import { Text, View, Button, Alert , SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView, RefreshControl} from 'react-native';
 import SignupScreen from '../LoginScreen/SignupScreen'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreen from '../HomeScreen/HomeScreen'
 import LoginScreen from '../LoginScreen/LoginScreen'
 import firebase from 'firebase';
 import 'firebase/firestore';
-
-
 
 
 
@@ -22,6 +20,8 @@ class ProfileScreen extends React.Component{
     token: 0,
     token2:0,
     number: 1,
+    refreshing: false,
+   
     
     
   }
@@ -53,6 +53,8 @@ class ProfileScreen extends React.Component{
       )
     }
   }
+
+  
 
   islogin = () =>{
     if(this.state.token==1){
@@ -107,12 +109,25 @@ class ProfileScreen extends React.Component{
 
     }else{
       return(
-        <View style={styles.loginbutton}>
+        
+        
+        <ScrollView style={styles.scroll} refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }>
+          
+          <View style={styles.loginbutton}>
           <Text>請先前往登入</Text>
+          <Text>(如已登入，請刷新畫面)</Text>
           <TouchableOpacity style={styles.gobutton} onPress={()=>this.props.navigation.navigate(LoginScreen)}>
             <Text>前往</Text>
           </TouchableOpacity>
         </View>
+        </ScrollView>
+        
+         
 
       )
       
@@ -163,6 +178,7 @@ loadcheck = async () =>{
   
   
   componentDidUpdate(){
+    
     if(this.state.number== 0){
       
       this.setState({number: 1})
@@ -172,12 +188,16 @@ loadcheck = async () =>{
   
 componentDidMount(){
   
-  const circle = () =>{
-    this.loadcheck()
-  }
-  setInterval(circle,2000)
+  this.load()
 
 
+}
+
+_onRefresh() {
+  this.setState({refreshing: true});
+  this.load().then(() => {
+    this.setState({refreshing: false});
+  });
 }
      
     render(){
@@ -198,6 +218,11 @@ componentDidMount(){
 }
 
 const styles = StyleSheet.create({
+  scroll:{
+    
+    marginTop:200
+    
+  },
   container: {
     marginTop:50,
     flex:1,

@@ -1,5 +1,5 @@
 import React, { useEffect , useState} from 'react';
-import { Text, View, Button, Alert , SafeAreaView, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import { Text, View, Button, Alert , SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView, RefreshControl} from 'react-native';
 import SignupScreen from '../LoginScreen/SignupScreen'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreen from '../HomeScreen/HomeScreen'
@@ -23,6 +23,7 @@ class UploadproductScreen extends React.Component{
     token: 0,
     token2:0,
     number: 1,
+    refreshing: false,
     
     
   }
@@ -68,12 +69,21 @@ class UploadproductScreen extends React.Component{
 
     }else{
       return(
-        <View style={styles.loginbutton}>
+        <ScrollView style={styles.scroll} refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }>
+          
+          <View style={styles.loginbutton}>
           <Text>請先前往登入</Text>
+          <Text>(如已登入，請刷新畫面)</Text>
           <TouchableOpacity style={styles.gobutton} onPress={()=>this.props.navigation.navigate(LoginScreen)}>
             <Text>前往</Text>
           </TouchableOpacity>
         </View>
+        </ScrollView>
 
       )
       
@@ -113,7 +123,12 @@ loadcheck = async () =>{
 }
 
   
-
+_onRefresh() {
+  this.setState({refreshing: true});
+  this.load().then(() => {
+    this.setState({refreshing: false});
+  });
+}
   
 
   
@@ -126,7 +141,7 @@ loadcheck = async () =>{
     }
   }
   
-componentDidMount(){
+/*componentDidMount(){
   
   const circle = () =>{
     this.loadcheck()
@@ -134,7 +149,7 @@ componentDidMount(){
   setInterval(circle,2000)
 
 
-}
+}*/
      
     render(){
      
@@ -154,6 +169,11 @@ componentDidMount(){
 }
 
 const styles = StyleSheet.create({
+  scroll:{
+    
+    marginTop:200
+    
+  },
   container: {
     marginTop:50,
     flex:1,
