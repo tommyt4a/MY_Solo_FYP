@@ -4,6 +4,7 @@ import SignupScreen from '../LoginScreen/SignupScreen'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreen from '../HomeScreen/HomeScreen'
 import LoginScreen from '../LoginScreen/LoginScreen'
+import storage from '@react-native-firebase/storage';
 import firebase from 'firebase';
 import 'firebase/firestore';
 
@@ -13,7 +14,7 @@ import 'firebase/firestore';
 
  
 
-class ProfileScreen extends React.Component{
+class UploadproductScreen extends React.Component{
   
   state ={
     username: '',
@@ -59,48 +60,8 @@ class ProfileScreen extends React.Component{
       return(
 
         <View style={styles.container}>
-            <View style={styles.settinghead}>
-                <TouchableOpacity style={styles.settingbutton} onPress={() => this.logout()}>
-                  <Text style={styles.logout}>登出</Text>
-                </TouchableOpacity>
-
-              </View>
-                <View style={styles.user}>
-                <Text style = {styles.username}>Username: {this.state.username}</Text>
-                <Text style = {styles.useraccount}>Account: {this.state.useraccount}</Text>
-
-                </View>
-
-              <View style={{flex:4}}>
-                <View style={styles.button}>
-                  
-                  <TouchableOpacity 
-                  transparent 
-                  onPress ={()=> this.segmentClicked(0)}
-                  active={this.state.activeindex==0}
-
-                  
-                  >
-                    <Text style={[this.state.activeindex == 0 ? {color:'black'} : {color:'grey'}]}>我的物品</Text>
-
-                  </TouchableOpacity>
-
-                  <TouchableOpacity 
-                  transparent 
-                  onPress ={()=> this.segmentClicked(1)}
-                  active={this.state.activeindex==1}>
-                  <Text style={[this.state.activeindex == 1 ? {color:'black'} : {color:'grey'}]}>我的收藏</Text>
-
-                  </TouchableOpacity>
-                  </View>
-                  {this.rendersection()}
-
-              </View>
-                
-                  
-                
-                
-            </View>
+            <Text style={styles.text}>上架你的物品</Text>
+         </View>
         
         
       )
@@ -153,12 +114,7 @@ loadcheck = async () =>{
 
   
 
-  logout = async () =>{
-    await AsyncStorage.setItem('token','0')
-    this.setState({number: 0})
-    
-    this.props.navigation.navigate(HomeScreen)
-  }
+  
 
   
   
@@ -209,8 +165,9 @@ const styles = StyleSheet.create({
   logout:{
     color: 'red',
   },
-  settingbutton:{
-    marginLeft: 300
+  text:{
+    fontSize: 20,
+    alignItems: 'center',
     
 
   },
@@ -260,4 +217,4 @@ const styles = StyleSheet.create({
 
 })
 
-  export default ProfileScreen;
+  export default UploadproductScreen;

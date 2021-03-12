@@ -3,7 +3,7 @@ import SplashScreen from './SplashScreen/SplashScreen';
 import HomeScreen from './HomeScreen/HomeScreen';
 import CatalogScreen from './CatalogScreen/CatalogScreen';
 import ChatScreen from './ChatScreen/ChatScreen';
-import CollectionScreen from './CollectionScreen/CollectionScreen';
+import UploadproductScreen from './UploadproductScreen/UploadproductScreen';
 import ProfileScreen from './ProfileScreen/ProfileScreen';
 import LoginScreen from './LoginScreen/LoginScreen';
 import ProductList from './ProductScreen/ProductList';
@@ -29,7 +29,7 @@ export {
     LoginScreen,
     HomeScreen,
     CatalogScreen,
-    CollectionScreen,
+    UploadproductScreen,
     ChatScreen,
     ProfileScreen,
     ProductList,

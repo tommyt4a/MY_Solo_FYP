@@ -9,7 +9,7 @@ import {
 
   HomeScreen,
   CatalogScreen,
-  CollectionScreen,
+  UploadproductScreen,
   ChatScreen,
   ProfileScreen,
 
@@ -20,7 +20,7 @@ import {
 
   NAVIGATION_TO_HOME_SCREEN,
   NAVIGATION_TO_CATALOG_SCREEN,
-  NAVIGATION_TO_COLLECTION_SCREEN,
+  NAVIGATION_TO_UPLOADPRODUCT_SCREEN,
   NAVIGATION_TO_CHAT_SCREEN,
   NAVIGATION_TO_PROFILE_SCREEN,
   
@@ -90,8 +90,8 @@ const BottomNavigator = () => {
           }}
         />
         <Tab.Screen
-          name={NAVIGATION_TO_COLLECTION_SCREEN}
-          component={CollectionScreen}
+          name={NAVIGATION_TO_UPLOADPRODUCT_SCREEN}
+          component={UploadproductScreen}
           options={{
             tabBarLabel: '上架貨物',
             tabBarIcon: ({ color, size }) => (
