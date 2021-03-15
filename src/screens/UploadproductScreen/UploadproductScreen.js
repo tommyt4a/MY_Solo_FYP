@@ -1,14 +1,85 @@
 import React, { useEffect , useState} from 'react';
-import { Text, View, Button, Alert , SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView, RefreshControl} from 'react-native';
+import { Text, View, Button, Alert , SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView, RefreshControl, Platform, TextInput, } from 'react-native';
 import SignupScreen from '../LoginScreen/SignupScreen'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreen from '../HomeScreen/HomeScreen'
 import LoginScreen from '../LoginScreen/LoginScreen'
 import storage from '@react-native-firebase/storage';
+
+import * as ImagePicker from 'expo-image-picker';
 import firebase from 'firebase';
 import 'firebase/firestore';
 
+function MyComponent () {
+  const [visible, setVisible] = useState(false);
 
+  const openMenu = () => setVisible(true);
+
+  const closeMenu = () => setVisible(false);
+
+  return (
+    <Provider>
+      <View
+        style={{
+          paddingTop: 50,
+          flexDirection: 'row',
+          justifyContent: 'center',
+        }}>
+        <Menu
+          visible={visible}
+          onDismiss={closeMenu}
+          anchor={<Button onPress={openMenu}>Show menu</Button>}>
+          <Menu.Item onPress={() => {}} title="Item 1" />
+          <Menu.Item onPress={() => {}} title="Item 2" />
+          
+          <Menu.Item onPress={() => {}} title="Item 3" />
+        </Menu>
+      </View>
+    </Provider>
+  );
+};
+
+
+ function ImagePickerExample() {
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== 'web') {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll permissions to make this work!');
+        }
+      }
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
+  return (
+    <View style={styles.imageset}>
+      
+      {image && <Image source={{ uri: image }} style={{ width: 250, height: 150 }} />}
+      <View style={{marginTop: 10, marginBottom:10}}>
+        <Button title="請選擇你的圖片"  onPress={pickImage} />
+      </View>
+      
+    </View>
+  );
+}
 
 
 
@@ -24,6 +95,9 @@ class UploadproductScreen extends React.Component{
     token2:0,
     number: 1,
     refreshing: false,
+    productname:'',
+    productprive:'',
+    productdescription:'',
     
     
   }
@@ -32,37 +106,47 @@ class UploadproductScreen extends React.Component{
 
   
 
-  segmentClicked = (index)=>{
-    this.setState({activeindex: index})
-  }
+  
 
-  rendersection =()=>{
-    if(this.state.activeindex == 0)
-    {
-      return(
-        <View>
-          <Text>我的物品</Text>
-        </View>
-
-        
-      )
-    }else if(this.state.activeindex == 1)
-    {
-      return(
-        <View>
-          <Text>我的收藏</Text>
-        </View>
-      )
-    }
-  }
+  
 
   islogin = () =>{
     if(this.state.token==1){
       return(
+        <ScrollView>
+          <View style={styles.container}>
+          <ImagePickerExample/>
 
-        <View style={styles.container}>
-            <Text style={styles.text}>上架你的物品</Text>
+          <MyComponent/>
+
+          <View style={styles.inputView} >
+          <TextInput  
+            style={styles.inputText}
+            placeholder="物品名稱..." 
+            placeholderTextColor="#003f5c"
+            onChangeText={text => this.setState({productname:text})}/>
+        </View>
+        <View style={styles.inputView} >
+          <TextInput  
+            
+            style={styles.inputText}
+            placeholder="價錢..." 
+            placeholderTextColor="#003f5c"
+            onChangeText={text => this.setState({productprive:text})}/>
+        </View>
+        <View style={styles.inputView2} >
+          <TextInput  
+            multiline = {true}
+            style={styles.inputText}
+            placeholder="物品描述..." 
+            placeholderTextColor="#003f5c"
+            onChangeText={text => this.setState({roductdescription:text})}/>
+        </View>
          </View>
+
+        </ScrollView>
+
+        
         
         
       )
@@ -78,7 +162,7 @@ class UploadproductScreen extends React.Component{
           
           <View style={styles.loginbutton}>
           <Text>請先前往登入</Text>
-          <Text>(如已登入，請刷新畫面)</Text>
+          <Text>(如已登入，請向下拉動刷新畫面)</Text>
           <TouchableOpacity style={styles.gobutton} onPress={()=>this.props.navigation.navigate(LoginScreen)}>
             <Text>前往</Text>
           </TouchableOpacity>
@@ -169,6 +253,34 @@ _onRefresh() {
 }
 
 const styles = StyleSheet.create({
+  inputView:{
+    width:"80%",
+    backgroundColor:"white",
+    borderRadius:25,
+    height:50,
+    marginBottom:20,
+    justifyContent:"center",
+    padding:20
+  },
+  inputView2:{
+    width:"80%",
+    backgroundColor:"white",
+    borderRadius:25,
+    height:100,
+    marginBottom:20,
+    justifyContent:"center",
+    padding:20
+  },
+  inputText:{
+    height:100,
+    color:"#003f5c"
+  },
+  imageset:{
+     
+    alignItems: 'center', 
+    justifyContent: 'center'
+
+  },
   scroll:{
     
     marginTop:200
@@ -177,6 +289,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop:50,
     flex:1,
+    alignItems: 'center', 
     
     
     

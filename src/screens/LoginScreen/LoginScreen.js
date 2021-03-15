@@ -85,7 +85,7 @@ import 'firebase/firestore';
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
-            placeholder="Account..." 
+            placeholder="帳號..." 
             placeholderTextColor="#003f5c"
             onChangeText={text => this.setState({account:text})}/>
         </View>
@@ -93,7 +93,7 @@ import 'firebase/firestore';
           <TextInput  
             secureTextEntry
             style={styles.inputText}
-            placeholder="Password..." 
+            placeholder="密碼..." 
             placeholderTextColor="#003f5c"
             onChangeText={text => this.setState({password:text})}/>
         </View>

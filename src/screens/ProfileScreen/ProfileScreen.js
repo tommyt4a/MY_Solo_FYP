@@ -120,7 +120,7 @@ class ProfileScreen extends React.Component{
           
           <View style={styles.loginbutton}>
           <Text>請先前往登入</Text>
-          <Text>(如已登入，請刷新畫面)</Text>
+          <Text>(如已登入，請向下拉動刷新畫面)</Text>
           <TouchableOpacity style={styles.gobutton} onPress={()=>this.props.navigation.navigate(LoginScreen)}>
             <Text>前往</Text>
           </TouchableOpacity>
