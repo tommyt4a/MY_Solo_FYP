@@ -42,33 +42,13 @@ class HomeScreen extends React.Component{
 
                         </View>
 
+                        
+
                         <View style={styles.text}>
-                            <Text>飾物</Text>
-                            <Text>女裝</Text>
-                            <Text>男裝</Text>
-
-                        </View>
-
-                        <View style={styles.container}>
-                            <TouchableOpacity >                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
-                            </TouchableOpacity>
                             
-
-                            <TouchableOpacity >                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
-                            </TouchableOpacity>
-
-                            <TouchableOpacity >                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
-                            </TouchableOpacity>
-
-                        </View>
-
-                        <View style={styles.text}>
-                            <Text>手袋</Text>
-                            <Text>美容</Text>
                             <Text>家電</Text>
+                            <Text>手機</Text>
+                            <Text>電腦</Text>
 
                         </View>
 

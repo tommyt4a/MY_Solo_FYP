@@ -1,44 +1,56 @@
-import React, { useEffect , useState} from 'react';
+import React, { useEffect , useState, useRef} from 'react';
 import { Text, View, Button, Alert , SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView, RefreshControl, Platform, TextInput, } from 'react-native';
 import SignupScreen from '../LoginScreen/SignupScreen'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreen from '../HomeScreen/HomeScreen'
 import LoginScreen from '../LoginScreen/LoginScreen'
 import storage from '@react-native-firebase/storage';
+import ActionSheet from "react-native-actions-sheet";
 
+import { MenuProvider } from 'react-native-popup-menu';
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+  
+} from 'react-native-popup-menu';
 import * as ImagePicker from 'expo-image-picker';
 import firebase from 'firebase';
 import 'firebase/firestore';
 
-function MyComponent () {
-  const [visible, setVisible] = useState(false);
 
-  const openMenu = () => setVisible(true);
+/*function Selectproducttype(){
 
-  const closeMenu = () => setVisible(false);
+  const [producttype,setProducttype] = useState('')
 
-  return (
-    <Provider>
-      <View
-        style={{
-          paddingTop: 50,
-          flexDirection: 'row',
-          justifyContent: 'center',
-        }}>
-        <Menu
-          visible={visible}
-          onDismiss={closeMenu}
-          anchor={<Button onPress={openMenu}>Show menu</Button>}>
-          <Menu.Item onPress={() => {}} title="Item 1" />
-          <Menu.Item onPress={() => {}} title="Item 2" />
+  useEffect(()=>{
+    (async ()=>{
+     setProducttype(producttype)
+      
+    })
+  });
+  return(
+    
+        
           
-          <Menu.Item onPress={() => {}} title="Item 3" />
-        </Menu>
-      </View>
-    </Provider>
-  );
-};
+          
+          <Menu onSelect={value => console.log(value.text)}>
+  <MenuTrigger text='選擇物品種類' />
+  <MenuOptions  >
+    <MenuOption onSelect={()=>setProducttype('電腦')} text='電腦'/>
+    <MenuOption value={2} text='手機'/>
+    
+    <MenuOption value={3} text='家電' />
+    <MenuOption value={4} text='玩具' />
+  </MenuOptions>
+  
+</Menu>
 
+
+
+  )
+}*/
 
  function ImagePickerExample() {
   const [image, setImage] = useState(null);
@@ -74,7 +86,7 @@ function MyComponent () {
       
       {image && <Image source={{ uri: image }} style={{ width: 250, height: 150 }} />}
       <View style={{marginTop: 10, marginBottom:10}}>
-        <Button title="請選擇你的圖片"  onPress={pickImage} />
+        <Button title="請選擇物品的圖片"  onPress={pickImage} />
       </View>
       
     </View>
@@ -82,6 +94,44 @@ function MyComponent () {
 }
 
 
+
+
+
+/*function Producttype(){
+  const [isVisible, setIsVisible] = useState(false);
+  const typearray = [
+    { title: '家電' },
+    { title: '電腦' },
+    { title: '手機' },
+    { title: '玩具' },
+    {
+      title: '取消',
+      containerStyle: { backgroundColor: 'red' },
+      titleStyle: { color: 'white' },
+      onPress: () => setIsVisible(false),
+    },
+  ];
+
+  return(
+    <TouchableOpacity>
+      <Text>選擇物品種類</Text>
+      <BottomSheet
+  isVisible={isVisible}
+  
+>
+  {typearray.map((l, i) => (
+    <ListItem key={i} containerStyle={l.containerStyle} onPress={l.onPress}>
+      <ListItem.Content>
+        <ListItem.Title style={l.titleStyle}>{l.title}</ListItem.Title>
+      </ListItem.Content>
+    </ListItem>
+  ))}
+</BottomSheet>
+    </TouchableOpacity>
+    
+
+  )
+}*/
 
  
 
@@ -96,8 +146,9 @@ class UploadproductScreen extends React.Component{
     number: 1,
     refreshing: false,
     productname:'',
-    productprive:'',
+    productprice:'',
     productdescription:'',
+    producttype:'',
     
     
   }
@@ -105,20 +156,31 @@ class UploadproductScreen extends React.Component{
   
 
   
-
   
 
   
 
   islogin = () =>{
+    
+    
     if(this.state.token==1){
       return(
+        <MenuProvider>
         <ScrollView>
           <View style={styles.container}>
           <ImagePickerExample/>
-
-          <MyComponent/>
-
+          <Menu >
+  <MenuTrigger text='選擇物品種類' />
+  <MenuOptions  >
+    <MenuOption onSelect={()=>this.setState({producttype: '電腦'})} text='電腦'/>
+    <MenuOption onSelect={()=>this.setState({producttype: '手機'})} text='手機'/>
+    
+    <MenuOption onSelect={()=>this.setState({producttype: '家電'})} text='家電' />
+    <MenuOption onSelect={()=>this.setState({producttype: '玩具'})} text='玩具' />
+  </MenuOptions>
+  
+</Menu>
+          <Text>{this.state.producttype}</Text>
           <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
@@ -145,7 +207,8 @@ class UploadproductScreen extends React.Component{
          </View>
 
         </ScrollView>
-
+        
+        </MenuProvider>
         
         
         
@@ -253,12 +316,17 @@ _onRefresh() {
 }
 
 const styles = StyleSheet.create({
+  typebutton:{
+    marginBottom:10,
+
+  },
   inputView:{
+    marginTop:10,
     width:"80%",
     backgroundColor:"white",
     borderRadius:25,
     height:50,
-    marginBottom:20,
+    
     justifyContent:"center",
     padding:20
   },
@@ -267,7 +335,7 @@ const styles = StyleSheet.create({
     backgroundColor:"white",
     borderRadius:25,
     height:100,
-    marginBottom:20,
+    marginTop:10,
     justifyContent:"center",
     padding:20
   },
