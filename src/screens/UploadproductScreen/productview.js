@@ -3,11 +3,13 @@ import { Text, View ,Image, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import UploadproductScreen from './UploadproductScreen'
-import storage from '@react-native-firebase/storage';
+
+import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 
 import firebase from 'firebase';
 import 'firebase/firestore';
+import 'firebase/firebase-storage'
 
 
 
@@ -54,6 +56,15 @@ componentDidMount(){
   addproduct = async () =>{
     const fileextension = this.state.imageuri.split('.').pop();
     console.log(fileextension)
+    var uuid = uuidv4();
+    const filename = `${uuid}.${fileextension}`
+    console.log(filename)
+    const response = await fetch(this.state.imageuri)
+    
+    const blob = await response.blob()
+
+    await firebase.storage().ref(filename).put(blob);
+    
 
 
   }
