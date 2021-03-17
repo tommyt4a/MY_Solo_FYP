@@ -61,7 +61,12 @@ export default class SignupScreen extends React.Component {
        
      
        }).then(() => {
-        
+        this.textInput1.clear()
+    this.textInput2.clear()
+    this.textInput3.clear()
+    this.textInput4.clear()
+    this.textInput5.clear()
+    
          
          Alert.alert("成功註冊，請登入");
 
@@ -87,6 +92,7 @@ export default class SignupScreen extends React.Component {
         <Text style={styles.logo}>註冊</Text>
         <View style={styles.inputView} >
           <TextInput  
+          ref={input => { this.textInput1 = input }}
             style={styles.inputText}
             placeholder="顯示名稱(最少8個字元)..." 
             placeholderTextColor="#003f5c"
@@ -95,6 +101,7 @@ export default class SignupScreen extends React.Component {
         </View>
         <View style={styles.inputView} >
           <TextInput  
+          ref={input => { this.textInput2 = input }}
             style={styles.inputText}
             placeholder="帳號(最少8個字元)..." 
             placeholderTextColor="#003f5c"
@@ -103,7 +110,7 @@ export default class SignupScreen extends React.Component {
         </View>
         <View style={styles.inputView} >
           <TextInput  
-            
+            ref={input => { this.textInput3 = input }}
             style={styles.inputText}
             placeholder="密碼(最少6個字元)..." 
             placeholderTextColor="#003f5c"
@@ -112,6 +119,7 @@ export default class SignupScreen extends React.Component {
         </View>
         <View style={styles.inputView} >
           <TextInput  
+          ref={input => { this.textInput4 = input }}
             style={styles.inputText}
             placeholder="確認密碼(最少6個字元)..." 
             placeholderTextColor="#003f5c"
@@ -120,6 +128,7 @@ export default class SignupScreen extends React.Component {
         </View>
         <View style={styles.inputView} >
           <TextInput  
+          ref={input => { this.textInput5 = input }}
             style={styles.inputText}
             placeholder="香港身份證號碼..." 
             placeholderTextColor="#003f5c"

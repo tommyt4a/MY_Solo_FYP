@@ -32,9 +32,12 @@ import SignupScreen from '../screens/LoginScreen/SignupScreen';
 import ForgotScreen from '../screens/LoginScreen/ForgotScreen'
 import { createStackNavigator } from "@react-navigation/stack";
 
+import productview from '../screens/UploadproductScreen/productview'
+
 
 const Stack = createStackNavigator();
 const ProductStack = createStackNavigator()
+const UploadProductStack = createStackNavigator()
 
 
 const Product = () => {
@@ -47,6 +50,19 @@ const Product = () => {
     <ProductStack.Screen name = "LoginScreen" component= {LoginScreen}/>
     <ProductStack.Screen name = "SignupScreen" component= {SignupScreen}/>
     <ProductStack.Screen name = "ForgotScreen" component= {ForgotScreen}/>
+    
+    
+  </Stack.Navigator>)
+}
+
+const UploadProduct = () => {
+  return(
+  <Stack.Navigator screenOptions={{
+    headerShown: false
+  }} > 
+    <UploadProductStack.Screen name = "UploadproductScreen" component = {UploadproductScreen} />
+    <UploadProductStack.Screen name = "productview" component= {productview}/>
+    
     
     
   </Stack.Navigator>)
@@ -91,7 +107,7 @@ const BottomNavigator = () => {
         />
         <Tab.Screen
           name={NAVIGATION_TO_UPLOADPRODUCT_SCREEN}
-          component={UploadproductScreen}
+          component={UploadProduct}
           options={{
             tabBarLabel: '上架貨物',
             tabBarIcon: ({ color, size }) => (

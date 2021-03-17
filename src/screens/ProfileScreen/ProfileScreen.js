@@ -4,6 +4,7 @@ import SignupScreen from '../LoginScreen/SignupScreen'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreen from '../HomeScreen/HomeScreen'
 import LoginScreen from '../LoginScreen/LoginScreen'
+import { EventRegister } from 'react-native-event-listeners'
 import firebase from 'firebase';
 import 'firebase/firestore';
 
@@ -171,6 +172,7 @@ loadcheck = async () =>{
   logout = async () =>{
     await AsyncStorage.setItem('token','0')
     this.setState({number: 0})
+    
     
     this.props.navigation.navigate(HomeScreen)
   }

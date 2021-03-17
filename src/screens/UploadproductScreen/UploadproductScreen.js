@@ -6,7 +6,8 @@ import HomeScreen from '../HomeScreen/HomeScreen'
 import LoginScreen from '../LoginScreen/LoginScreen'
 import storage from '@react-native-firebase/storage';
 import ActionSheet from "react-native-actions-sheet";
-
+import productview from './productview'
+import { EventRegister } from 'react-native-event-listeners'
 import { MenuProvider } from 'react-native-popup-menu';
 import {
   Menu,
@@ -20,37 +21,10 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 
 
-/*function Selectproducttype(){
-
-  const [producttype,setProducttype] = useState('')
-
-  useEffect(()=>{
-    (async ()=>{
-     setProducttype(producttype)
-      
-    })
-  });
-  return(
-    
-        
-          
-          
-          <Menu onSelect={value => console.log(value.text)}>
-  <MenuTrigger text='選擇物品種類' />
-  <MenuOptions  >
-    <MenuOption onSelect={()=>setProducttype('電腦')} text='電腦'/>
-    <MenuOption value={2} text='手機'/>
-    
-    <MenuOption value={3} text='家電' />
-    <MenuOption value={4} text='玩具' />
-  </MenuOptions>
-  
-</Menu>
 
 
 
-  )
-}*/
+
 
  function ImagePickerExample() {
   const [image, setImage] = useState(null);
@@ -78,8 +52,10 @@ import 'firebase/firestore';
 
     if (!result.cancelled) {
       setImage(result.uri);
+      AsyncStorage.setItem('productpreviewpicture',result.uri)
+
     }
-  };
+  }
 
   return (
     <View style={styles.imageset}>
@@ -97,43 +73,9 @@ import 'firebase/firestore';
 
 
 
-/*function Producttype(){
-  const [isVisible, setIsVisible] = useState(false);
-  const typearray = [
-    { title: '家電' },
-    { title: '電腦' },
-    { title: '手機' },
-    { title: '玩具' },
-    {
-      title: '取消',
-      containerStyle: { backgroundColor: 'red' },
-      titleStyle: { color: 'white' },
-      onPress: () => setIsVisible(false),
-    },
-  ];
 
-  return(
-    <TouchableOpacity>
-      <Text>選擇物品種類</Text>
-      <BottomSheet
-  isVisible={isVisible}
-  
->
-  {typearray.map((l, i) => (
-    <ListItem key={i} containerStyle={l.containerStyle} onPress={l.onPress}>
-      <ListItem.Content>
-        <ListItem.Title style={l.titleStyle}>{l.title}</ListItem.Title>
-      </ListItem.Content>
-    </ListItem>
-  ))}
-</BottomSheet>
-    </TouchableOpacity>
-    
 
-  )
-}*/
 
- 
 
 class UploadproductScreen extends React.Component{
   
@@ -149,28 +91,25 @@ class UploadproductScreen extends React.Component{
     productprice:'',
     productdescription:'',
     producttype:'',
+    getmethod:'',
+    loginstate:'',
     
     
   }
 
   
 
-  
-  
-
-  
-
   islogin = () =>{
-    
-    
-    if(this.state.token==1){
+
+    //if(this.state.token==1){
       return(
         <MenuProvider>
         <ScrollView>
           <View style={styles.container}>
           <ImagePickerExample/>
+          <View style={{flexDirection:'row'}}>
           <Menu >
-  <MenuTrigger text='選擇物品種類' />
+  <MenuTrigger text='選擇物品種類:  '  />
   <MenuOptions  >
     <MenuOption onSelect={()=>this.setState({producttype: '電腦'})} text='電腦'/>
     <MenuOption onSelect={()=>this.setState({producttype: '手機'})} text='手機'/>
@@ -180,9 +119,27 @@ class UploadproductScreen extends React.Component{
   </MenuOptions>
   
 </Menu>
-          <Text>{this.state.producttype}</Text>
+<Text>{this.state.producttype}</Text>
+          </View>
+          <View style={{flexDirection:'row'}}>
+          <Menu >
+  <MenuTrigger text='選擇交易方式:  ' />
+  <MenuOptions  >
+    <MenuOption onSelect={()=>this.setState({getmethod: '面交'})} text='面交'/>
+    <MenuOption onSelect={()=>this.setState({getmethod: '郵寄'})} text='郵寄'/>
+    
+    <MenuOption onSelect={()=>this.setState({getmethod: '可議'})} text='可議' />
+    
+  </MenuOptions>
+  
+</Menu>
+<Text>{this.state.getmethod}</Text>
+          </View>
+         
+          
           <View style={styles.inputView} >
           <TextInput  
+          ref={input => { this.textInput1 = input }}
             style={styles.inputText}
             placeholder="物品名稱..." 
             placeholderTextColor="#003f5c"
@@ -190,19 +147,26 @@ class UploadproductScreen extends React.Component{
         </View>
         <View style={styles.inputView} >
           <TextInput  
-            
+            ref={input => { this.textInput2 = input }}
             style={styles.inputText}
             placeholder="價錢..." 
             placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({productprive:text})}/>
+            onChangeText={text => this.setState({productprice:text})}/>
         </View>
         <View style={styles.inputView2} >
           <TextInput  
+           ref={input => { this.textInput3 = input }}
             multiline = {true}
             style={styles.inputText}
             placeholder="物品描述..." 
             placeholderTextColor="#003f5c"
-            onChangeText={text => this.setState({roductdescription:text})}/>
+            onChangeText={text => this.setState({productdescription:text})}/>
+        </View>
+        <View style={styles.submitbutton}>
+          <TouchableOpacity style={styles.submit} onPress={()=>this.submitproduct()}  >
+            <Text>預覽</Text>
+
+          </TouchableOpacity>
         </View>
          </View>
 
@@ -214,7 +178,8 @@ class UploadproductScreen extends React.Component{
         
       )
 
-    }else{
+   // }
+    /*else{
       return(
         <ScrollView style={styles.scroll} refreshControl={
           <RefreshControl
@@ -235,7 +200,38 @@ class UploadproductScreen extends React.Component{
       )
       
 
+    }*/
+  }
+
+  checkloginwhenbutton = async()=>{
+    var check = await AsyncStorage.getItem('token');
+     this.setState({token: check});
+     if(this.state.token!== '1'){
+       Alert.alert('請先前往個人資料頁面登入')
+     }
+  }
+
+  submitproduct = () =>{
+    this.checkloginwhenbutton()
+    if(this.state.productname === '' || this.state.productprice === ''||this.state.producttype === ''||this.state.getmethod === '')
+    {
+      Alert.alert('請最少輸入物品種類，交易方式，物品名稱，價錢');
+    }else if(isNaN(this.state.productprice)){
+      Alert.alert("請於價錢欄位輸入數字");
+    }else{
+      this.textInput1.clear()
+    this.textInput2.clear()
+    this.textInput3.clear()
+    this.setState({producttype: ''})
+    this.setState({getmethod: ''})
+    this.props.navigation.navigate('productview' , 
+            {productname: this.state.productname , productdescription: this.state.productdescription , productprice: this.state.productprice , producttype: this.state.producttype , 
+            getmethod: this.state.getmethod })
+
     }
+
+    
+
   }
 
 loadcheck = async () =>{
@@ -281,22 +277,30 @@ _onRefresh() {
   
   
   componentDidUpdate(){
-    if(this.state.number== 0){
+    
+    if(this.state.loginstate== 0){
       
-      this.setState({number: 1})
+      this.setState({loginstate: 1})
       this.load();
     }
   }
   
-/*componentDidMount(){
+componentDidMount(){
   
-  const circle = () =>{
-    this.loadcheck()
-  }
-  setInterval(circle,2000)
+
+}
+
+componentWillUnmount() {
+  this.listener = EventRegister.addEventListener('uselogin',(loginstate) =>{
+    this.setState({loginstate: loginstate})
+    console.log(loginstate)
+})
+}
 
 
-}*/
+componentWillUnmount() {
+  EventRegister.removeEventListener(this.listener)
+}
      
     render(){
      
@@ -315,7 +319,27 @@ _onRefresh() {
     }
 }
 
+
+
 const styles = StyleSheet.create({
+  
+  submit:{
+    
+    borderColor:"#fb5b5a",
+   
+    borderWidth:1,
+    height:40,
+    width:50,
+    alignItems:"center",
+    justifyContent:"center",
+    
+   
+  },
+  submitbutton:{
+    marginTop:10,
+    marginLeft: 300,
+
+  },
   typebutton:{
     marginBottom:10,
 
