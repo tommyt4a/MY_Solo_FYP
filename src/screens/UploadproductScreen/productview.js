@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View ,Image, StyleSheet} from 'react-native';
+import { Text, View ,Image, StyleSheet, Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import UploadproductScreen from './UploadproductScreen'
@@ -18,6 +18,7 @@ class productview extends React.Component{
         state={
           imageuri:'',
           username:'',
+          useraccount:'',
         }
       
 
@@ -54,6 +55,8 @@ componentDidMount(){
   }
 
   addproduct = async () =>{
+    const {productname , productdescription , productprice, producttype , 
+        getmethod  } = this.props.route.params
     const fileextension = this.state.imageuri.split('.').pop();
     console.log(fileextension)
     var uuid = uuidv4();
@@ -64,6 +67,28 @@ componentDidMount(){
     const blob = await response.blob()
 
     await firebase.storage().ref(filename).put(blob);
+
+    const url = await firebase.storage().ref(filename).getDownloadURL();
+    console.log(url)
+    var value = await AsyncStorage.getItem('useraccount');
+    this.setState({useraccount: value});
+    
+    
+    await firebase.firestore().collection('product').doc(filename).set({
+         
+        productname: productname,
+        productprice: productprice,
+        producttype: producttype,
+        productdescription: productdescription,
+        getmethod: getmethod,
+        useraccount: this.state.useraccount,
+        username: this.state.username,
+        imageurl: url,
+        imageid: filename,
+    }).then(()=>{
+        Alert.alert("成功上架")
+        this.props.navigation.navigate(UploadproductScreen)
+    })
     
 
 
