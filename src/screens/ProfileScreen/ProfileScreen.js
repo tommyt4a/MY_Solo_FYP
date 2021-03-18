@@ -6,6 +6,7 @@ import HomeScreen from '../HomeScreen/HomeScreen'
 import LoginScreen from '../LoginScreen/LoginScreen'
 import { EventRegister } from 'react-native-event-listeners'
 import Listfavourite from './Listfavourite'
+import Listdetail from './Listdetail'
 import firebase from 'firebase';
 import 'firebase/firestore';
 

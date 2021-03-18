@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {  FlatList, View, Text, StyleSheet,Image,ScrollView, RefreshControl} from 'react-native';
+import Listdetail from './Listdetail'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/firebase-storage'
@@ -13,6 +15,7 @@ export default function Listfavourite() {
 
 
   useEffect(() => {
+    
     const subscriber = firebase.firestore()
       .collection('product')
       .onSnapshot(querySnapshot => {
@@ -45,7 +48,7 @@ export default function Listfavourite() {
          
         <View style={{ height: 120, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           
-          <TouchableOpacity>
+          <TouchableOpacity >
            <View style={styles.fullbutton}>
             
 
@@ -57,14 +60,16 @@ export default function Listfavourite() {
           <View style={{flexDirection:'row'}}>
           <View style={styles.halfbutton2}>
           <Text>交易方式: </Text>
+          <Text>物品種類: </Text>
           <Text >物品名稱: </Text>
           <Text>價錢: </Text>
-          <Text >描述: </Text>
+          <Text>描述: </Text>
          
           </View>
           
            <View style={styles.halfbutton3}>
           <Text>{item.getmethod}</Text>
+          <Text>{item.producttype}</Text>
           <Text numberOfLines= {1}>{item.productname}</Text>
           <Text>${item.productprice}</Text>
           <Text numberOfLines= {1}>{item.productdescription}</Text>

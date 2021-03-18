@@ -60,7 +60,7 @@ import 'firebase/firestore';
           
           
           
-          this.props.navigation.navigate(HomeScreen)
+          this.props.navigation.navigate(ProfileScreen)
           }
           
           

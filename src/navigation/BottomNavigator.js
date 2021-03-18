@@ -33,11 +33,14 @@ import ForgotScreen from '../screens/LoginScreen/ForgotScreen'
 import { createStackNavigator } from "@react-navigation/stack";
 
 import productview from '../screens/UploadproductScreen/productview'
+import Listdetail from '../screens/ProfileScreen/Listdetail'
+import Listfavourite from '../screens/ProfileScreen/Listfavourite'
 
 
 const Stack = createStackNavigator();
 const ProductStack = createStackNavigator()
 const UploadProductStack = createStackNavigator()
+const ProfileStack = createStackNavigator()
 
 
 const Product = () => {
@@ -47,9 +50,7 @@ const Product = () => {
   }} > 
     <ProductStack.Screen name = "HomeScreen" component = {HomeScreen} />
     <ProductStack.Screen name = "ProductList" component= {ProductList}/>
-    <ProductStack.Screen name = "LoginScreen" component= {LoginScreen}/>
-    <ProductStack.Screen name = "SignupScreen" component= {SignupScreen}/>
-    <ProductStack.Screen name = "ForgotScreen" component= {ForgotScreen}/>
+    
     
     
   </Stack.Navigator>)
@@ -62,6 +63,23 @@ const UploadProduct = () => {
   }} > 
     <UploadProductStack.Screen name = "UploadproductScreen" component = {UploadproductScreen} />
     <UploadProductStack.Screen name = "productview" component= {productview}/>
+    
+    
+    
+  </Stack.Navigator>)
+}
+
+const Profile = () => {
+  return(
+  <Stack.Navigator screenOptions={{
+    headerShown: false
+  }} > 
+    <ProfileStack.Screen name = "ProfileScreen" component = {ProfileScreen} />
+    <ProfileStack.Screen name = "Listfavourite" component= {Listfavourite}/>
+    <ProfileStack.Screen name = "Listdetail" component= {Listdetail}/>
+    <ProfileStack.Screen name = "LoginScreen" component= {LoginScreen}/>
+    <ProfileStack.Screen name = "SignupScreen" component= {SignupScreen}/>
+    <ProfileStack.Screen name = "ForgotScreen" component= {ForgotScreen}/>
     
     
     
@@ -128,7 +146,7 @@ const BottomNavigator = () => {
         />
         <Tab.Screen
           name={NAVIGATION_TO_PROFILE_SCREEN}
-          component={ProfileScreen}
+          component={Profile}
           options={{
             tabBarLabel: '個人資料',
             tabBarIcon: ({ color, size }) => (
