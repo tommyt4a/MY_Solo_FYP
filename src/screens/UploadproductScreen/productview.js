@@ -81,10 +81,11 @@ componentDidMount(){
         producttype: producttype,
         productdescription: productdescription,
         getmethod: getmethod,
-        useraccount: this.state.useraccount,
-        username: this.state.username,
+        owneraccount: this.state.useraccount,
+        ownername: this.state.username,
         imageurl: url,
         imageid: filename,
+        creatat: firebase.firestore.FieldValue.serverTimestamp()
     }).then(()=>{
         Alert.alert("成功上架")
         this.props.navigation.navigate(UploadproductScreen)
@@ -115,7 +116,12 @@ componentDidMount(){
                 <Text style={styles.text}>賣家: {this.state.username}</Text>
                 <Text style={styles.text}>物品名稱: {productname}</Text>
                 <Text style={styles.text}>價錢: ${productprice}</Text>
-                <Text style={styles.text} numberOfLines={10}>描述:{productdescription}</Text>
+                <View style={styles.description}>
+                <Text>描述:</Text>
+                <Text style={styles.text} numberOfLines={5}>{productdescription}</Text>
+
+                </View>
+                
                 
                 <View style={styles.buttonstyle}>
                 <TouchableOpacity style={styles.button1} onPress={() => this.props.navigation.navigate(UploadproductScreen)}>
@@ -138,6 +144,12 @@ componentDidMount(){
 }
 
 const styles = StyleSheet.create({
+    description:{
+        flexDirection: 'row',
+        maxWidth:220,
+        maxHeight:300,
+        alignItems: 'center',
+    },
     button1:{
         borderWidth:1,
         height:30,

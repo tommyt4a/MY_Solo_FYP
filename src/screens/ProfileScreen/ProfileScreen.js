@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreen from '../HomeScreen/HomeScreen'
 import LoginScreen from '../LoginScreen/LoginScreen'
 import { EventRegister } from 'react-native-event-listeners'
+import Listfavourite from './Listfavourite'
 import firebase from 'firebase';
 import 'firebase/firestore';
 
@@ -39,9 +40,17 @@ class ProfileScreen extends React.Component{
     if(this.state.activeindex == 0)
     {
       return(
+        <ScrollView style={styles.scroll1} refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }>
         <View>
-          <Text>我的物品</Text>
+          <Listfavourite/>
+          
         </View>
+       </ScrollView>
 
         
       )
@@ -220,6 +229,9 @@ _onRefresh() {
 }
 
 const styles = StyleSheet.create({
+  scroll1:{
+
+  },
   scroll:{
     
     marginTop:200
