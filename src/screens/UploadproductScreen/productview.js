@@ -73,9 +73,10 @@ componentDidMount(){
     var value = await AsyncStorage.getItem('useraccount');
     this.setState({useraccount: value});
     
-    
-    await firebase.firestore().collection('product').doc(filename).set({
+    var uuid1 = uuidv4();
+    await firebase.firestore().collection('product').doc(uuid1).set({
          
+        productid: uuid1,
         productname: productname,
         productprice: productprice,
         producttype: producttype,
@@ -85,7 +86,7 @@ componentDidMount(){
         ownername: this.state.username,
         imageurl: url,
         imageid: filename,
-        creatat: firebase.firestore.FieldValue.serverTimestamp()
+        createat: firebase.firestore.FieldValue.serverTimestamp()
     }).then(()=>{
         Alert.alert("成功上架")
         this.props.navigation.navigate(UploadproductScreen)
