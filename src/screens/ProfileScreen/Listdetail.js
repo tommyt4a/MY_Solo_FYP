@@ -1,20 +1,46 @@
 import React from 'react';
 import { Text, View, Image, StyleSheet , TouchableOpacity } from 'react-native';
+import ProfileScreen from './ProfileScreen'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import firebase from 'firebase';
+import 'firebase/firestore';
+import 'firebase/firebase-storage'
+import { Alert } from 'react-native';
 
 class Listdetail extends React.Component{
+
+    state={
+        productid:'',
+
+    }
+
+    delproduct =  (productid) =>{
+        console.log(this.state.productid)
+        firebase.firestore()
+        .collection('product')
+        .doc(productid)
+        .delete()
+        .then(() => {
+          Alert.alert("物品已成功下架");
+          this.props.navigation.navigate(ProfileScreen)
+        });
+        
+    }
+
     render(){
         const {productname , productdescription , productprice, producttype , 
             getmethod , imageurl , productid  } = this.props.route.params
+        
+        
+            
 
-            delproduct = () =>{
-
-            }
+            
         return(
             <View style={styles.container}>
                 
                 <Image source={{ uri: imageurl }} style={{ width: 250, height: 150 }}/>
 
-                <Text>{productid}</Text>
+                
                 
                 <View style={styles.productcontainer}>
                 
@@ -35,7 +61,7 @@ class Listdetail extends React.Component{
                 
                 
                 <View style={styles.buttonstyle}>
-                <TouchableOpacity style={styles.button1} onPress={()=>this.delproduct()}>
+                <TouchableOpacity style={styles.button1}  onPress={()=>this.delproduct(productid )} >
                     <Text>下架物品</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button2} >

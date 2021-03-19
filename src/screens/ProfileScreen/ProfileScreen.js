@@ -60,7 +60,7 @@ class ProfileScreen extends React.Component{
           
           <TouchableOpacity onPress={()=>this.props.navigation.navigate('Listdetail' , {productname: item.productname 
             , productprice: item.productprice , producttype: item.producttype , productdescription: item.productdescription , getmethod: item.getmethod 
-            , imageurl: item.imageurl, product: item.id})}>
+            , imageurl: item.imageurl, productid: item.productid})}>
            <View style={styles.fullbutton}>
             
 
