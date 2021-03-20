@@ -2,6 +2,8 @@ import React, { useEffect , useState, useRef} from 'react';
 import { Text, View, Button, Alert , SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView, RefreshControl, Platform, TextInput, } from 'react-native';
 
 import storage from '@react-native-firebase/storage';
+import Listdetail from './Listdetail'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 import { MenuProvider } from 'react-native-popup-menu';
@@ -48,7 +50,8 @@ function ImagePickerExample() {
   
       if (!result.cancelled) {
         setImage(result.uri);
-        AsyncStorage.setItem('productpreviewpicture',result.uri)
+       await AsyncStorage.setItem('updateproductpreviewpicture',result.uri)
+       console.log(result.uri)
   
       }
     }
@@ -85,6 +88,8 @@ class modifyproduct extends React.Component{
         imageurl:'',
         productid:'',
       }
+
+      
 
       componentDidMount(){
         const {productname , productdescription , productprice, producttype , 
@@ -167,12 +172,27 @@ class modifyproduct extends React.Component{
             onChangeText={text => this.setState({productdescription:text})}
             value={this.state.productdescription}/>
         </View>
-        <View style={styles.submitbutton}>
-          <TouchableOpacity style={styles.submit} onPress={()=>this.submitproduct()}  >
-            <Text>預覽</Text>
+        <View style={styles.twobutton}>
+          <View style={styles.submitbutton}>
+          <TouchableOpacity style={styles.submit} onPress={()=>this.props.navigation.navigate('updateproductview' , 
+            {productname: this.state.productname , productdescription: this.state.productdescription , productprice: this.state.productprice , producttype: this.state.producttype , 
+            getmethod: this.state.getmethod, imageurl: this.state.imageurl , productid: this.state.productid })}  >
+            <Text>修改預覽</Text>
 
           </TouchableOpacity>
+         </View>
+          <View style={styles.gobackbutton}>
+            <TouchableOpacity style={styles.submit} onPress={()=>this.props.navigation.navigate(Listdetail)}>
+              <Text>返回上一頁</Text>
+
+            </TouchableOpacity>
+
+          </View>
+
+        
+        
         </View>
+        
          </View>
 
         </ScrollView>
@@ -184,6 +204,13 @@ class modifyproduct extends React.Component{
 }
 
 const styles = StyleSheet.create({
+  gobackbutton:{
+    right:250,
+    marginTop:10,
+  },
+  twobutton:{
+    flexDirection: 'row',
+  },
   
     submit:{
       
@@ -191,15 +218,16 @@ const styles = StyleSheet.create({
      
       borderWidth:1,
       height:40,
-      width:50,
+      width:100,
       alignItems:"center",
       justifyContent:"center",
+
       
      
     },
     submitbutton:{
       marginTop:10,
-      marginLeft: 300,
+      marginLeft: 250,
   
     },
     typebutton:{
@@ -220,7 +248,7 @@ const styles = StyleSheet.create({
       width:"80%",
       backgroundColor:"white",
       borderRadius:25,
-      height:100,
+      height:90,
       marginTop:10,
       justifyContent:"center",
       padding:20

@@ -36,6 +36,7 @@ import productview from '../screens/UploadproductScreen/productview'
 import Listdetail from '../screens/ProfileScreen/Listdetail'
 import Listfavourite from '../screens/ProfileScreen/Listfavourite'
 import modifyproduct from '../screens/ProfileScreen/modifyproduct'
+import updateproductview from '../screens/ProfileScreen/updateproductview'
 
 
 const Stack = createStackNavigator();
@@ -82,6 +83,7 @@ const Profile = () => {
     <ProfileStack.Screen name = "SignupScreen" component= {SignupScreen}/>
     <ProfileStack.Screen name = "ForgotScreen" component= {ForgotScreen}/>
     <ProfileStack.Screen name = "modifyproduct" component = {modifyproduct} />
+    <ProfileStack.Screen name = "updateproductview" component = {updateproductview} />
     
     
     

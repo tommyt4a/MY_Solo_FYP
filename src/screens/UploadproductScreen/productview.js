@@ -85,7 +85,7 @@ componentDidMount(){
         owneraccount: this.state.useraccount,
         ownername: this.state.username,
         imageurl: url,
-        imageid: filename,
+        //imageid: filename,
         createat: firebase.firestore.FieldValue.serverTimestamp()
     }).then(()=>{
         Alert.alert("成功上架")
