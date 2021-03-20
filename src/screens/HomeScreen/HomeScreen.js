@@ -11,6 +11,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 
 class HomeScreen extends React.Component{
+state={
+    producttype:'',
+}
+
+
+
     render(){
         
         return(
@@ -26,17 +32,17 @@ class HomeScreen extends React.Component{
                     <ScrollView style={styles.scrollview}>
 
                         <View style={styles.container}>
-                            <TouchableOpacity onPress={()=>this.props.navigation.navigate(ProductList)} >                           
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '家電'})} >                           
                                 <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
                                  
                             </TouchableOpacity>
                             
 
-                            <TouchableOpacity onPress={()=>this.props.navigation.navigate(ProductList)}>                           
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '手機'})}>                           
                                 <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
                             </TouchableOpacity>
 
-                            <TouchableOpacity >                           
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '電腦'})}>                           
                                 <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
                             </TouchableOpacity>
 
@@ -53,7 +59,7 @@ class HomeScreen extends React.Component{
                         </View>
 
                         <View style={styles.container}>
-                            <TouchableOpacity >                           
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '玩具'})}>                           
                                 <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
                             </TouchableOpacity>
                             
@@ -69,9 +75,10 @@ class HomeScreen extends React.Component{
                         </View>
 
                         <View style={styles.text}>
+                            <Text>玩具</Text>
                             <Text>手機</Text>
                             <Text>電腦</Text>
-                            <Text>玩具</Text>
+                            
 
                         </View>
 
