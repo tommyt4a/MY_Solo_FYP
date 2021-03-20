@@ -6,6 +6,7 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/firebase-storage'
 import { Alert } from 'react-native';
+import modifyproduct from './modifyproduct';
 
 class Listdetail extends React.Component{
 
@@ -64,7 +65,9 @@ class Listdetail extends React.Component{
                 <TouchableOpacity style={styles.button1}  onPress={()=>this.delproduct(productid )} >
                     <Text>下架物品</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button2} >
+                <TouchableOpacity style={styles.button2} onPress={()=>this.props.navigation.navigate('modifyproduct', {productname: productname , productdescription: productdescription 
+                , productprice: productprice, producttype: producttype , 
+            getmethod: getmethod , imageurl: imageurl , productid: productid})}>
                     <Text>編輯物品</Text>
                 </TouchableOpacity>
 
@@ -73,6 +76,10 @@ class Listdetail extends React.Component{
                 
 
                 </View>
+
+                <TouchableOpacity style={{alignContent:'center'}} onPress={()=> this.props.navigation.navigate(ProfileScreen)}>
+                    <Text>返回上一頁</Text>
+                </TouchableOpacity>
                 
                 
             </View>

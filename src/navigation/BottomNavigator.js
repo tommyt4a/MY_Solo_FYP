@@ -35,6 +35,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import productview from '../screens/UploadproductScreen/productview'
 import Listdetail from '../screens/ProfileScreen/Listdetail'
 import Listfavourite from '../screens/ProfileScreen/Listfavourite'
+import modifyproduct from '../screens/ProfileScreen/modifyproduct'
 
 
 const Stack = createStackNavigator();
@@ -80,6 +81,7 @@ const Profile = () => {
     <ProfileStack.Screen name = "LoginScreen" component= {LoginScreen}/>
     <ProfileStack.Screen name = "SignupScreen" component= {SignupScreen}/>
     <ProfileStack.Screen name = "ForgotScreen" component= {ForgotScreen}/>
+    <ProfileStack.Screen name = "modifyproduct" component = {modifyproduct} />
     
     
     
