@@ -37,6 +37,7 @@ import Listdetail from '../screens/ProfileScreen/Listdetail'
 import Listfavourite from '../screens/ProfileScreen/Listfavourite'
 import modifyproduct from '../screens/ProfileScreen/modifyproduct'
 import updateproductview from '../screens/ProfileScreen/updateproductview'
+import ProductListDetail from '../screens/ProductScreen/ProductListDetail'
 
 
 const Stack = createStackNavigator();
@@ -52,6 +53,8 @@ const Product = () => {
   }} > 
     <ProductStack.Screen name = "HomeScreen" component = {HomeScreen} />
     <ProductStack.Screen name = "ProductList" component= {ProductList}/>
+    <ProductStack.Screen name = "ProductListDetail" component= {ProductListDetail}/>
+
     
     
     

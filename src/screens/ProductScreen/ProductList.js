@@ -4,9 +4,11 @@ import SearchBar from '../../common/SearchBar';
 import LoginScreen from '../LoginScreen/LoginScreen';
 
 import SignupScreen from '../LoginScreen/SignupScreen';
+import HomeScreen from '../HomeScreen/HomeScreen'
 import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/firebase-storage'
+import ProductListDetail from './ProductListDetail';
 
 
 
@@ -45,7 +47,7 @@ class ProductList extends React.Component {
         return(
             <SafeAreaView style={{flex: 1}}>
                <View style={styles.container}>
-                <TouchableOpacity style={styles.goback}>
+                <TouchableOpacity style={styles.goback} onPress={()=>this.props.navigation.navigate(HomeScreen)}>
                     <Text>返回上一頁</Text>
                 </TouchableOpacity>
                <FlatList
@@ -56,7 +58,8 @@ class ProductList extends React.Component {
         <View style={{ height: 120, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           
           <TouchableOpacity style={{borderWidth:1, alignItems: 'center',
-  justifyContent: 'center', marginTop:5,}}>
+  justifyContent: 'center', marginTop:5}} onPress={()=>this.props.navigation.navigate('ProductListDetail',{producttype: item.producttype , productname: item.productname 
+  , productdescription: item.productdescription , productprice: item.productprice , ownername: item.ownername, imageurl: item.imageurl , getmethod: item.getmethod })}>
            <View style={styles.fullbutton}>
             
 
