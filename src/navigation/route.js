@@ -1,11 +1,11 @@
 export const NAVIGATION_TO_SPLASH_SCREEN = 'SplashScreen';
 export const NAVIGATION_TO_HOME_SCREEN = 'HomeScreen';
-export const NAVIGATION_TO_CATALOG_SCREEN = 'CatalogScreen';
+export const NAVIGATION_TO_SEARCH_SCREEN = 'SearchScreen';
 export const NAVIGATION_TO_UPLOADPRODUCT_SCREEN = 'UploadproductScreen';
 export const NAVIGATION_TO_CHAT_SCREEN = 'ChatScreen';
 export const NAVIGATION_TO_PROFILE_SCREEN = 'ProfileScreen';
 export const NAVIGATION_TO_LOGIN_SCREEN = 'LoginScreen';
-export const NAVIGATION_TO_SEARCH_SCREEN = 'SearchScreen';
+
 export const NAVIGATION_TO_PRODUCT_SCREEN = 'ProductList';
 
 

@@ -8,7 +8,7 @@ import {
   SplashScreen,
 
   HomeScreen,
-  CatalogScreen,
+  SearchScreen,
   UploadproductScreen,
   ChatScreen,
   ProfileScreen,
@@ -19,7 +19,7 @@ import {
   NAVIGATION_TO_SPLASH_SCREEN,
 
   NAVIGATION_TO_HOME_SCREEN,
-  NAVIGATION_TO_CATALOG_SCREEN,
+  NAVIGATION_TO_SEARCH_SCREEN,
   NAVIGATION_TO_UPLOADPRODUCT_SCREEN,
   NAVIGATION_TO_CHAT_SCREEN,
   NAVIGATION_TO_PROFILE_SCREEN,
@@ -121,8 +121,8 @@ const BottomNavigator = () => {
           }}
         />
         <Tab.Screen
-          name={NAVIGATION_TO_CATALOG_SCREEN}
-          component={CatalogScreen}
+          name={NAVIGATION_TO_SEARCH_SCREEN}
+          component={SearchScreen}
           options={{
             tabBarLabel: '搜尋',
             tabBarIcon: ({ color, size }) => (

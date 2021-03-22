@@ -1,7 +1,7 @@
 import SplashScreen from './SplashScreen/SplashScreen';
 
 import HomeScreen from './HomeScreen/HomeScreen';
-import CatalogScreen from './CatalogScreen/CatalogScreen';
+import SearchScreen from './SearchScreen/SearchScreen';
 import ChatScreen from './ChatScreen/ChatScreen';
 import UploadproductScreen from './UploadproductScreen/UploadproductScreen';
 import ProfileScreen from './ProfileScreen/ProfileScreen';
@@ -28,7 +28,7 @@ export {
     SplashScreen,
     LoginScreen,
     HomeScreen,
-    CatalogScreen,
+    SearchScreen,
     UploadproductScreen,
     ChatScreen,
     ProfileScreen,
