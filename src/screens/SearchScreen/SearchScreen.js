@@ -1,6 +1,6 @@
 import * as React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { StatusBar, StyleSheet, View, TextInput , SafeAreaView, FlatList, Image, Text} from 'react-native';
+import { StatusBar, StyleSheet, View, TextInput , SafeAreaView, FlatList, Image, Text, } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from 'firebase';
 import 'firebase/firestore';
@@ -8,15 +8,41 @@ import 'firebase/firestore';
 
 
 class SearchScreen extends React.Component{
+    
     state={
         search:'',
         order:'',
         way:'',
-        product:'',
+        product:[],
+        value:'',
+        findproduct:[],
+        
+        
+    }
+    
+
+    
+    componentDidMount(){
+        firebase.firestore()
+    .collection('product')
+    //.orderBy(this.state.order,this.state.way)
+    .onSnapshot(querySnapshot => {
+      const getproduct = [];
+  
+      querySnapshot.forEach(documentSnapshot => {
+        getproduct.push({
+          ...documentSnapshot.data(),
+          key: documentSnapshot.id,
+        });
+      });
+        this.setState({product: getproduct , findproduct: getproduct})
+        console.log(this.state.product)
+      })
     }
 
+    
     searching() {
-        
+        console.log(this.state.search)
         firebase.firestore()
     .collection('product')
     //.orderBy(this.state.order,this.state.way)
@@ -36,23 +62,50 @@ class SearchScreen extends React.Component{
          
         
       }
+
+      searchFilterFunction = (text) => {
+        this.setState({
+          value: text,
+        });
+        console.log(this.state.value)
+        
+    
+        const newData = this.state.findproduct.filter(item => {
+          const itemData = item.productname;
+          const textData = text;
+    
+          return itemData.indexOf(textData) > -1;
+        });
+        this.setState({
+          product: newData,
+        });
+        console.log(this.state.product)
+      };
+
+
+      renderHeader = () => (
+        <View style={styles.header}>
+        <View style={styles.searchbar}>
+            <TouchableOpacity >
+            <MaterialCommunityIcons name="magnify" style={{fontSize:24,}}/>
+            </TouchableOpacity>
+            
+            <TextInput style={{fontSize:24, marginLeft: 10, marginRight: 'auto', }}  
+            placeholder='輸入物品名稱搜尋'
+            onChangeText={text => this.searchFilterFunction(text)}
+            />
+            
+        </View>
+        
+</View>
+        
+      )
+
+
     render(){
         return(
             <SafeAreaView style={{flex: 1}}>
-                <View style={styles.header}>
-                <View style={styles.searchbar}>
-                    <TouchableOpacity onPress={()=>this.searching()}>
-                    <MaterialCommunityIcons name="magnify" style={{fontSize:24,}}/>
-                    </TouchableOpacity>
-                    
-                    <TextInput style={{fontSize:24, marginLeft: 10, marginRight: 'auto', }}  
-                    placeholder='輸入物品名稱搜尋'
-                    onChangeText={text => this.setState({search: text})}
-                    />
-                    
-                </View>
                 
-        </View>
 
         <FlatList
       data={this.state.product}
@@ -101,6 +154,7 @@ class SearchScreen extends React.Component{
         
         
       )}
+      ListHeaderComponent={this.renderHeader}
     />
 
 
