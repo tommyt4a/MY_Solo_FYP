@@ -2,6 +2,14 @@ import * as React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { StatusBar, StyleSheet, View, TextInput , SafeAreaView, FlatList, Image, Text, } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { MenuProvider } from 'react-native-popup-menu';
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+  
+} from 'react-native-popup-menu';
 import firebase from 'firebase';
 import 'firebase/firestore';
 
@@ -11,21 +19,48 @@ class SearchScreen extends React.Component{
     
     state={
         search:'',
-        order:'',
-        way:'',
+        
         product:[],
         value:'',
         findproduct:[],
+        order1:'',
+        way1:'',
+        order:'createat',
+        way:'asc',
+        order1:'時間',
+        way1:'升序',
+        order2:'',
+        way2:'',
         
         
     }
     
-
+    componentDidUpdate(){
+       if(this.state.order2==='時間'||this.state.order2==='價錢'||this.state.way2==='升序'||this.state.way2==='降序'){
+        firebase.firestore()
+        .collection('product')
+        .orderBy(this.state.order,this.state.way)
+        .onSnapshot(querySnapshot => {
+          const getproduct = [];
+      
+          querySnapshot.forEach(documentSnapshot => {
+            getproduct.push({
+              ...documentSnapshot.data(),
+              key: documentSnapshot.id,
+            });
+          });
+            this.setState({product: getproduct , findproduct: getproduct})
+            
+          })
+           this.setState({order2: ''})
+           this.setState({way2: ''})
+       }
+    }
     
     componentDidMount(){
         firebase.firestore()
     .collection('product')
-    //.orderBy(this.state.order,this.state.way)
+    .orderBy(this.state.order,this.state.way)
     .onSnapshot(querySnapshot => {
       const getproduct = [];
   
@@ -36,7 +71,7 @@ class SearchScreen extends React.Component{
         });
       });
         this.setState({product: getproduct , findproduct: getproduct})
-        console.log(this.state.product)
+        
       })
     }
 
@@ -45,7 +80,7 @@ class SearchScreen extends React.Component{
         console.log(this.state.search)
         firebase.firestore()
     .collection('product')
-    //.orderBy(this.state.order,this.state.way)
+    .orderBy(this.state.order,this.state.way)
     .onSnapshot(querySnapshot => {
       const getproduct = [];
   
@@ -67,7 +102,7 @@ class SearchScreen extends React.Component{
         this.setState({
           value: text,
         });
-        console.log(this.state.value)
+        
         
     
         const newData = this.state.findproduct.filter(item => {
@@ -79,12 +114,18 @@ class SearchScreen extends React.Component{
         this.setState({
           product: newData,
         });
-        console.log(this.state.product)
+        
       };
 
 
-      renderHeader = () => (
-        <View style={styles.header}>
+      
+
+
+    render(){
+        return(
+            <SafeAreaView style={{flex: 1}}>
+                <MenuProvider>
+                <View style={styles.header}>
         <View style={styles.searchbar}>
             <TouchableOpacity >
             <MaterialCommunityIcons name="magnify" style={{fontSize:24,}}/>
@@ -98,14 +139,37 @@ class SearchScreen extends React.Component{
         </View>
         
 </View>
-        
-      )
-
-
-    render(){
-        return(
-            <SafeAreaView style={{flex: 1}}>
+<View style={{flexDirection:'row'}}> 
+               
                 
+                  <View style={styles.menu1}>
+                  
+                  <Menu >
+  <MenuTrigger text='排列順序: '  />
+  <MenuOptions  >
+    <MenuOption onSelect={()=>this.setState({order: 'createat', order1:'時間',order2:'時間'})} text='時間'/>
+    <MenuOption onSelect={()=>this.setState({order: 'productprice', order1:'價錢', order2:'價錢'})} text='價錢'/>
+    
+    
+    </MenuOptions>
+  
+</Menu>
+<Text >{this.state.order1}</Text>
+</View>
+<View style={styles.menu2}>
+<Menu >
+  <MenuTrigger text='升降序: '  />
+  <MenuOptions  >
+    <MenuOption onSelect={()=>this.setState({way: 'asc', way1:'升序',way2:'升序'})} text='升序'/>
+    <MenuOption onSelect={()=>this.setState({way: 'desc', way1:'降序',way2:'降序'})} text='降序'/>
+    
+    
+    </MenuOptions>
+  
+</Menu>
+<Text >{this.state.way1}</Text>
+</View>
+</View>
 
         <FlatList
       data={this.state.product}
@@ -154,16 +218,35 @@ class SearchScreen extends React.Component{
         
         
       )}
-      ListHeaderComponent={this.renderHeader}
+      
     />
 
-
+</MenuProvider>
             </SafeAreaView>
+            
         )
     }
 }
 
 const styles = StyleSheet.create({
+    menu2:{
+        left:130,
+        marginTop: 5,
+        flexDirection:'row',
+        borderWidth:1,
+        alignItems: 'center',
+      justifyContent: 'center',
+      width:100,
+      },
+      menu1:{
+        left:120,
+        marginTop: 5,
+        flexDirection:'row',
+        borderWidth:1,
+        alignItems: 'center',
+      justifyContent: 'center',
+      width:100,
+      },
 
     fullbutton:{
         flexDirection: 'row',
