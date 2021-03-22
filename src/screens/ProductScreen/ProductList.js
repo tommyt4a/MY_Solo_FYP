@@ -30,6 +30,7 @@ class ProductList extends React.Component {
         order1:'時間',
         way1:'升序',
         refreshing: false,
+        
        
         
     }
