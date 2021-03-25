@@ -38,12 +38,30 @@ import Listfavourite from '../screens/ProfileScreen/Listfavourite'
 import modifyproduct from '../screens/ProfileScreen/modifyproduct'
 import updateproductview from '../screens/ProfileScreen/updateproductview'
 import ProductListDetail from '../screens/ProductScreen/ProductListDetail'
+import ChatRoom from '../screens/ChatScreen/ChatRoom'
+import ChatList from '../screens/ChatScreen/ChatList'
 
 
 const Stack = createStackNavigator();
 const ProductStack = createStackNavigator()
 const UploadProductStack = createStackNavigator()
 const ProfileStack = createStackNavigator()
+const ChatStack = createStackNavigator()
+
+const Chat = () => {
+  return(
+  <Stack.Navigator screenOptions={{
+    headerShown: false
+  }} > 
+    <ChatStack.Screen name = "ChatScreen" component = {ChatScreen} />
+    <ChatStack.Screen name = "ChatList" component= {ChatList}/>
+    <ChatStack.Screen name = "ChatRoom" component= {ChatRoom}/>
+
+    
+    
+    
+  </Stack.Navigator>)
+}
 
 
 const Product = () => {
@@ -142,7 +160,7 @@ const BottomNavigator = () => {
         />
         <Tab.Screen
           name={NAVIGATION_TO_CHAT_SCREEN}
-          component={ChatScreen}
+          component={Chat}
           options={{
             tabBarLabel: '聊天',
             tabBarIcon: ({ color, size }) => (

@@ -9,9 +9,65 @@ import { Alert } from 'react-native';
 
 
 class ProductListDetail extends React.Component{
+    state={
+        useraccount:'',
+        token:'',
+        productid:'',
+        username:'',
+    }
+
+    checklogin = async () =>{
+        var check = await AsyncStorage.getItem('token');
+        this.setState({token: check});
+
+    }
+
+    
+
+    componentDidMount(){
+        this.checklogin()
+    }
+
+    buildchat = async () =>{
+        const{productid, owneraccount, ownername} = this.props.route.params
+        if(this.state.token !=1){
+            Alert.alert('請先到個人資料登入')
+        }else {
+            var value = await AsyncStorage.getItem('useraccount');
+        this.setState({useraccount: value});
+        
+        const chatroomid = `${productid}.${this.state.useraccount}`
+        console.log(chatroomid)
+        firebase.firestore().collection('chatroom').doc(chatroomid).get().then((doc) => {
+            if (doc.exists){
+              Alert.alert('聊天室已存在，請到「聊天」尋找對話');
+          }else{
+              
+      firebase.firestore().collection('user').doc(this.state.useraccount).get().then((doc)=>{
+        if(doc.exists){
+          
+         this.setState({username: doc.get('displayname')})
+         firebase.firestore().collection('chatroom').doc(chatroomid).set({})
+         firebase.firestore().collection('user').doc(this.state.useraccount).collection('message').doc(chatroomid).set({chatroomid: chatroomid, target: ownername})
+         firebase.firestore().collection('user').doc(owneraccount).collection('message').doc(chatroomid).set({target: this.state.username , chatroomid: chatroomid }).then(()=>{
+             Alert.alert('聊天室成功建立');
+         })
+ 
+        }
+ 
+     })
+            
+           
+          }
+        })
+        //firebase.firestore().collection('user').doc(this.state.useraccount).collection('message').doc(chatroomid).set({chatroomid: chatroomid})
+        }
+        
+    }
+
     render(){
         const {productname , productdescription , productprice, producttype , 
-            getmethod , imageurl , productid, ownername  } = this.props.route.params
+            getmethod , imageurl ,  ownername  } = this.props.route.params
         return(
             <View style={styles.container}>
                 
@@ -42,10 +98,8 @@ class ProductListDetail extends React.Component{
                 <TouchableOpacity style={styles.button1}  onPress={()=>this.delproduct(productid )} >
                     <Text>收藏物品</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button2} onPress={()=>this.props.navigation.navigate('modifyproduct', {productname: productname , productdescription: productdescription 
-                , productprice: productprice, producttype: producttype , 
-            getmethod: getmethod , imageurl: imageurl , productid: productid})}>
-                    <Text>私訊聊天</Text>
+                <TouchableOpacity style={styles.button2} onPress={()=>this.buildchat()}>
+                    <Text>與賣家建立聊天</Text>
                 </TouchableOpacity>
 
                 </View>
