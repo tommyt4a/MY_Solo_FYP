@@ -29,7 +29,7 @@ class ProductListDetail extends React.Component{
     }
 
     buildchat = async () =>{
-        const{productid, owneraccount, ownername} = this.props.route.params
+        const{productid, owneraccount, ownername, productname, imageurl} = this.props.route.params
         if(this.state.token !=1){
             Alert.alert('請先到個人資料登入')
         }else {
@@ -48,8 +48,10 @@ class ProductListDetail extends React.Component{
           
          this.setState({username: doc.get('displayname')})
          firebase.firestore().collection('chatroom').doc(chatroomid).set({})
-         firebase.firestore().collection('user').doc(this.state.useraccount).collection('message').doc(chatroomid).set({chatroomid: chatroomid, target: ownername})
-         firebase.firestore().collection('user').doc(owneraccount).collection('message').doc(chatroomid).set({target: this.state.username , chatroomid: chatroomid }).then(()=>{
+         firebase.firestore().collection('user').doc(this.state.useraccount).collection('message').doc(chatroomid)
+         .set({chatroomid: chatroomid, target: ownername, productname: productname, imageurl: imageurl})
+         firebase.firestore().collection('user').doc(owneraccount).collection('message').doc(chatroomid)
+         .set({target: this.state.username , chatroomid: chatroomid,productname: productname, imageurl: imageurl}).then(()=>{
              Alert.alert('聊天室成功建立');
          })
  
