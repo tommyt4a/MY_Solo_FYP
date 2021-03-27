@@ -79,6 +79,7 @@ class ChatRoom extends React.Component{
      
     gettime=()=>{
       var date = moment().format('YYYY/MM/DD h:mm:ss')
+      console.log(date)
       this.setState({getdate: date})
       
       
@@ -127,9 +128,9 @@ class ChatRoom extends React.Component{
             data={this.state.showmessages}
             renderItem ={({ item }) => (
               <View style={[(item.sendby==this.state.username)? styles.byme : styles.byother]}>
-                <View style={{flexDirection: 'row'}}>
+                <View style={[(item.sendby==this.state.username)? styles.myview : styles.otherview]}>
                 <Text style={styles.name}>{item.sendby}</Text>
-                <Text style={styles.time}>{item.createat}</Text>
+                <Text style={styles.time}>{moment(item.createat, "YYYYMMDDh:mm:ss").fromNow()}</Text>
                 </View>
                 
                 <Text style={[(item.sendby==this.state.username)? styles.mytext : styles.othertext]}>{item.text}</Text>
@@ -176,6 +177,16 @@ class ChatRoom extends React.Component{
 }
 
 const styles = StyleSheet.create({
+  otherview:{
+    flexDirection:'row',
+    alignSelf:'flex-start',
+    marginLeft:5,
+  },
+  myview:{
+    flexDirection:'row',
+    alignSelf:'flex-end',
+    marginRight:5,
+  },
   mytext:{
     alignSelf:'flex-end',
     marginRight:5,
@@ -192,11 +203,13 @@ const styles = StyleSheet.create({
     marginLeft:5,
   },
   time:{
-    marginLeft:20,
+    color:'grey',
     fontSize:10,
   },
   name:{
-    marginLeft:5,
+
+    color: 'red',
+    marginRight:5,
     fontSize:10,
   },
   gobackbutton:{
