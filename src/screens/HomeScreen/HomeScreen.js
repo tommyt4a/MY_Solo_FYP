@@ -32,13 +32,13 @@ state={
                     <ScrollView style={styles.scrollview}>
 
                         <View style={styles.container}>
-                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '家電'})} >                           
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '家具'})} >                           
                                 <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
                                  
                             </TouchableOpacity>
                             
 
-                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '手機'})}>                           
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '電器'})}>                           
                                 <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
                             </TouchableOpacity>
 
@@ -52,79 +52,79 @@ state={
 
                         <View style={styles.text}>
                             
-                            <Text>家電</Text>
-                            <Text>手機</Text>
+                            <Text>家具</Text>
+                            <Text>電器</Text>
                             <Text>電腦</Text>
 
                         </View>
 
                         <View style={styles.container}>
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '手機'})}>                           
+                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
+                            </TouchableOpacity>
+                            
+
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '模型'})}>                           
+                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
+                            </TouchableOpacity>
+
                             <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '玩具'})}>                           
                                 <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
                             </TouchableOpacity>
-                            
-
-                            <TouchableOpacity >                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
-                            </TouchableOpacity>
-
-                            <TouchableOpacity >                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
-                            </TouchableOpacity>
 
                         </View>
 
                         <View style={styles.text}>
-                            <Text>玩具</Text>
                             <Text>手機</Text>
-                            <Text>電腦</Text>
+                            <Text>模型</Text>
+                            <Text>玩具</Text>
                             
 
                         </View>
 
                         <View style={styles.container}>
-                            <TouchableOpacity >                           
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '手作'})}>                           
                                 <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
                             </TouchableOpacity>
                             
 
-                            <TouchableOpacity >                           
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '書本'})}>                           
                                 <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
                             </TouchableOpacity>
 
-                            <TouchableOpacity >                           
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '光碟'})}>                           
                                 <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
                             </TouchableOpacity>
 
                         </View>
 
                         <View style={styles.text}>
-                            <Text>手機</Text>
-                            <Text>電腦</Text>
-                            <Text>玩具</Text>
+                            <Text>手作</Text>
+                            <Text>書本</Text>
+                            <Text>光碟</Text>
 
                         </View>
 
                         <View style={styles.container}>
-                            <TouchableOpacity >                           
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '衣服'})}>                           
                                 <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
                             </TouchableOpacity>
                             
 
-                            <TouchableOpacity >                           
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '鞋類'})}>                           
                                 <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
                             </TouchableOpacity>
 
-                            <TouchableOpacity >                           
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '飾物'})}>                           
                                 <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
                             </TouchableOpacity>
 
                         </View>
 
                         <View style={styles.text}>
-                            <Text>手機</Text>
-                            <Text>電腦</Text>
-                            <Text>玩具</Text>
+                            <Text>衣服</Text>
+                            <Text>鞋類</Text>
+                            <Text>飾物</Text>
 
                         </View>
                   

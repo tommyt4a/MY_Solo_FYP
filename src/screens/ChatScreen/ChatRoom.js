@@ -18,7 +18,7 @@ class ChatRoom extends React.Component{
         useraccount:'',
         text:'',
         target:'',
-        date:'',
+        getdate:'',
     }
 
 
@@ -68,7 +68,7 @@ class ChatRoom extends React.Component{
       });
       
         this.setState({showmessages: message})
-        console.log(this.state.showmessages)
+        
         
         
       })
@@ -79,13 +79,14 @@ class ChatRoom extends React.Component{
     gettime=()=>{
       var date = new Date().getDate(); //Current Date
     var month = new Date().getMonth() + 1; //Current Month
-    var year = new Date().getFullYear(); //Current Year
+    
     var hours = new Date().getHours(); //Current Hours
     var min = new Date().getMinutes(); //Current Minutes
     var sec = new Date().getSeconds(); //Current Seconds
-    this.setState({date: date + '/' + month + '/' + year 
+    this.setState({getdate: date + '/' + month + 
     + ' ' + hours + ':' + min + ':' + sec})
-    console.log(this.state.date)
+    console.log(this.state.getdate)
+    
     }
     
     send=()=>{
@@ -93,12 +94,14 @@ class ChatRoom extends React.Component{
 
       }else{
         this.gettime()
+   
+    
         const {chatroomid}=this.props.route.params
       console.log(this.state.text)
       firebase.firestore().collection('chatroom').doc(chatroomid).collection(chatroomid).doc().set({
         text: this.state.text,
         sendby: this.state.username,
-        createat: this.state.date,
+        createat: this.state.getdate,
       })
       console.log(this.state.text)
       this.textInput1.clear()
@@ -125,12 +128,17 @@ class ChatRoom extends React.Component{
             <ScrollView>
             <View style={styles.toppart}>
             <FlatList
+            inverted={true}
             data={this.state.showmessages}
             renderItem ={({ item }) => (
-              <View style={{height:30}}>
-                
+              <View style={[(item.sendby==this.state.username)? styles.byme : styles.byother]}>
+                <View style={{flexDirection: 'row'}}>
                 <Text style={styles.name}>{item.sendby}</Text>
-                <Text>{item.createat}</Text>
+                <Text style={styles.time}>{item.createat}</Text>
+                </View>
+                
+                <Text style={[(item.sendby==this.state.username)? styles.mytext : styles.othertext]}>{item.text}</Text>
+                
               </View>
             )}
             />
@@ -173,8 +181,28 @@ class ChatRoom extends React.Component{
 }
 
 const styles = StyleSheet.create({
+  mytext:{
+    alignSelf:'flex-end',
+    marginRight:5,
+  },
+  byother:{
+
+    height: 50,
+  },
+  byme:{
+    marginLeft:180,
+    height: 50,
+  },
+  othertext:{
+    marginLeft:5,
+  },
+  time:{
+    marginLeft:20,
+    fontSize:10,
+  },
   name:{
-    fontSize:10
+    marginLeft:5,
+    fontSize:10,
   },
   gobackbutton:{
    borderWidth:1 ,
