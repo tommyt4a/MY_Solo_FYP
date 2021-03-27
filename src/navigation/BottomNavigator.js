@@ -41,6 +41,7 @@ import ProductListDetail from '../screens/ProductScreen/ProductListDetail'
 import ChatRoom from '../screens/ChatScreen/ChatRoom'
 import ChatList from '../screens/ChatScreen/ChatList'
 import favouritedetail from '../screens/ProfileScreen/favouritedetail'
+import Searchdetail from '../screens/SearchScreen/Searchdetail'
 
 
 const Stack = createStackNavigator();
@@ -121,7 +122,7 @@ const Search = () => {
     headerShown: false
   }} > 
     <SearchStack.Screen name = "SearchScreen" component = {SearchScreen} />
-    <SearchStack.Screen name = "ProductListDetail" component= {ProductListDetail}/>
+    <SearchStack.Screen name = "Searchdetail" component= {Searchdetail}/>
     
     
     
