@@ -6,6 +6,7 @@ import UploadproductScreen from './UploadproductScreen'
 
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
+import moment from 'moment';
 
 import firebase from 'firebase';
 import 'firebase/firestore';
@@ -55,6 +56,7 @@ componentDidMount(){
   }
 
   addproduct = async () =>{
+    var date = moment().format('YYYY/MM/DD')
     const {productname , productdescription , productprice, producttype , 
         getmethod  } = this.props.route.params
     const fileextension = this.state.imageuri.split('.').pop();
@@ -86,7 +88,7 @@ componentDidMount(){
         ownername: this.state.username,
         imageurl: url,
         //imageid: filename,
-        createat: firebase.firestore.FieldValue.serverTimestamp()
+        createat: date
     }).then(()=>{
         Alert.alert("成功上架")
         this.props.navigation.navigate(UploadproductScreen)

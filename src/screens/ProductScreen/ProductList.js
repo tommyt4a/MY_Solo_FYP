@@ -145,7 +145,7 @@ class ProductList extends React.Component {
           <TouchableOpacity style={{borderWidth:1, alignItems: 'center',
   justifyContent: 'center', marginTop:5}} onPress={()=>this.props.navigation.navigate('ProductListDetail',{producttype: item.producttype , productname: item.productname 
   , productdescription: item.productdescription , productprice: item.productprice , ownername: item.ownername, imageurl: item.imageurl , getmethod: item.getmethod 
-  , owneraccount: item.owneraccount , productid: item.productid})}>
+  , owneraccount: item.owneraccount , productid: item.productid , createat: item.createat})}>
            <View style={styles.fullbutton}>
             
 
@@ -239,7 +239,7 @@ scroll1:{
 
 },
 scroll:{
-  
+  marginBottom:25,
  
 },
 

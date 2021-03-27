@@ -6,6 +6,7 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/firebase-storage'
 import { Alert } from 'react-native';
+import moment from 'moment'
 
 
 class ProductListDetail extends React.Component{
@@ -67,9 +68,28 @@ class ProductListDetail extends React.Component{
         
     }
 
+   addfavourite= async()=>{
+    var value = await AsyncStorage.getItem('useraccount');
+    this.setState({useraccount: value});
+       console.log(this.state.useraccount)
+        const {productid ,productname , productdescription , productprice, producttype , 
+            getmethod , imageurl ,  ownername}=this.props.route.params
+            firebase.firestore().collection('user').doc(this.state.useraccount).collection('favouriteproduct').doc(productid).set({
+                producttype: producttype,
+                productprice: productprice,
+                productname: productname,
+                productdescription: productdescription,
+                imageurl: imageurl,
+                getmethod: getmethod,
+                productid: productid,
+    
+            })
+        
+    }
+
     render(){
         const {productname , productdescription , productprice, producttype , 
-            getmethod , imageurl ,  ownername  } = this.props.route.params
+            getmethod , imageurl ,  ownername , createat } = this.props.route.params
         return(
             <View style={styles.container}>
                 
@@ -89,6 +109,7 @@ class ProductListDetail extends React.Component{
                 <Text style={styles.text}>物品名稱: {productname}</Text>
                 <Text style={styles.text}>價錢: ${productprice}</Text>
                 <Text style={styles.text}>賣家: {ownername}</Text>
+                <Text style={styles.text}>建立於: {createat}</Text>
                 <View style={styles.description}>
                 <Text>描述:</Text>
                 <Text style={styles.text} numberOfLines={5}>{productdescription}</Text>
@@ -97,7 +118,7 @@ class ProductListDetail extends React.Component{
                 
                 
                 <View style={styles.buttonstyle}>
-                <TouchableOpacity style={styles.button1}  onPress={()=>this.delproduct(productid )} >
+                <TouchableOpacity style={styles.button1}  onPress={()=>this.addfavourite()} >
                     <Text>收藏物品</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button2} onPress={()=>this.buildchat()}>
@@ -171,6 +192,7 @@ const styles = StyleSheet.create({
     },
     container: {
         marginTop:50,
+        
         flex:1,
         alignItems: 'center', 
         

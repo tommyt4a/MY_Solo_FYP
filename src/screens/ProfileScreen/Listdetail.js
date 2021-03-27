@@ -30,7 +30,7 @@ class Listdetail extends React.Component{
 
     render(){
         const {productname , productdescription , productprice, producttype , 
-            getmethod , imageurl , productid  } = this.props.route.params
+            getmethod , imageurl , productid ,createat } = this.props.route.params
         
         
             
@@ -54,6 +54,7 @@ class Listdetail extends React.Component{
                 
                 <Text style={styles.text}>物品名稱: {productname}</Text>
                 <Text style={styles.text}>價錢: ${productprice}</Text>
+                <Text style={styles.text}>建立於: ${createat}</Text>
                 <View style={styles.description}>
                 <Text>描述:</Text>
                 <Text style={styles.text} numberOfLines={5}>{productdescription}</Text>
