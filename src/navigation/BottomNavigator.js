@@ -48,6 +48,7 @@ const ProductStack = createStackNavigator()
 const UploadProductStack = createStackNavigator()
 const ProfileStack = createStackNavigator()
 const ChatStack = createStackNavigator()
+const SearchStack = createStackNavigator()
 
 const Chat = () => {
   return(
@@ -114,6 +115,19 @@ const Profile = () => {
   </Stack.Navigator>)
 }
 
+const Search = () => {
+  return(
+  <Stack.Navigator screenOptions={{
+    headerShown: false
+  }} > 
+    <SearchStack.Screen name = "SearchScreen" component = {SearchScreen} />
+    <SearchStack.Screen name = "ProductListDetail" component= {ProductListDetail}/>
+    
+    
+    
+  </Stack.Navigator>)
+}
+
 
 
 
@@ -143,7 +157,7 @@ const BottomNavigator = () => {
         />
         <Tab.Screen
           name={NAVIGATION_TO_SEARCH_SCREEN}
-          component={SearchScreen}
+          component={Search}
           options={{
             tabBarLabel: '搜尋',
             tabBarIcon: ({ color, size }) => (

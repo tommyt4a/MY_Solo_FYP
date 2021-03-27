@@ -10,6 +10,7 @@ import {
   MenuTrigger,
   
 } from 'react-native-popup-menu';
+import ProductListDetail from '../ProductScreen/ProductListDetail'
 import firebase from 'firebase';
 import 'firebase/firestore';
 
@@ -178,7 +179,9 @@ class SearchScreen extends React.Component{
          
         <View style={{ height: 120, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           
-          <TouchableOpacity >
+          <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductListDetail',{producttype: item.producttype , productname: item.productname 
+  , productdescription: item.productdescription , productprice: item.productprice , ownername: item.ownername, imageurl: item.imageurl , getmethod: item.getmethod 
+  , owneraccount: item.owneraccount , productid: item.productid , createat: item.createat})}>
            <View style={styles.fullbutton}>
             
 
