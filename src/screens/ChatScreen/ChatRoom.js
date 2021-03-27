@@ -10,6 +10,7 @@ import { FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native';
 import { ScrollView } from 'react-native';
 import ChatList from './ChatList'
+import moment from 'moment';
 
 class ChatRoom extends React.Component{
     state={
@@ -77,15 +78,10 @@ class ChatRoom extends React.Component{
 
      
     gettime=()=>{
-      var date = new Date().getDate(); //Current Date
-    var month = new Date().getMonth() + 1; //Current Month
-    
-    var hours = new Date().getHours(); //Current Hours
-    var min = new Date().getMinutes(); //Current Minutes
-    var sec = new Date().getSeconds(); //Current Seconds
-    this.setState({getdate: date + '/' + month + 
-    + ' ' + hours + ':' + min + ':' + sec})
-    console.log(this.state.getdate)
+      var date = moment().format('YYYY/MM/DD h:mm:ss')
+      this.setState({getdate: date})
+      
+      
     
     }
     
@@ -93,15 +89,14 @@ class ChatRoom extends React.Component{
       if(this.state.text===''){
 
       }else{
-        this.gettime()
-   
+        var date = moment().format('YYYY/MM/DD h:mm:ss')
     
         const {chatroomid}=this.props.route.params
       console.log(this.state.text)
       firebase.firestore().collection('chatroom').doc(chatroomid).collection(chatroomid).doc().set({
         text: this.state.text,
         sendby: this.state.username,
-        createat: this.state.getdate,
+        createat: date,
       })
       console.log(this.state.text)
       this.textInput1.clear()
