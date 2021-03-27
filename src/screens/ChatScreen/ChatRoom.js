@@ -90,7 +90,7 @@ class ChatRoom extends React.Component{
       if(this.state.text===''){
 
       }else{
-        var date = moment().format('YYYY/MM/DD h:mm:ss')
+        var date = moment().format('YYYY/MM/DD h:mm:ss a')
     
         const {chatroomid}=this.props.route.params
       console.log(this.state.text)
@@ -130,7 +130,7 @@ class ChatRoom extends React.Component{
               <View style={[(item.sendby==this.state.username)? styles.byme : styles.byother]}>
                 <View style={[(item.sendby==this.state.username)? styles.myview : styles.otherview]}>
                 <Text style={styles.name}>{item.sendby}</Text>
-                <Text style={styles.time}>{moment(item.createat, "YYYYMMDDh:mm:ss").fromNow()}</Text>
+                <Text style={styles.time}>{moment(item.createat, "YYYYMMDDh:mm:ss a").fromNow()}</Text>
                 </View>
                 
                 <Text style={[(item.sendby==this.state.username)? styles.mytext : styles.othertext]}>{item.text}</Text>

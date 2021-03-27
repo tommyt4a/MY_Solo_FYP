@@ -74,18 +74,27 @@ class ProductListDetail extends React.Component{
        console.log(this.state.useraccount)
         const {productid ,productname , productdescription , productprice, producttype , 
             getmethod , imageurl ,  ownername}=this.props.route.params
-            firebase.firestore().collection('user').doc(this.state.useraccount).collection('favouriteproduct').doc(productid).set({
-                producttype: producttype,
-                productprice: productprice,
-                productname: productname,
-                productdescription: productdescription,
-                imageurl: imageurl,
-                getmethod: getmethod,
-                productid: productid,
-    
-            })
+            firebase.firestore().collection('user').doc(this.state.useraccount).collection('favouriteproduct').doc(productid).get().then((doc) => {
+                if (doc.exists){
+                  Alert.alert("已存在收藏中");
+              }else{
+                firebase.firestore().collection('user').doc(this.state.useraccount).collection('favouriteproduct').doc(productid).set({
+                    producttype: producttype,
+                    productprice: productprice,
+                    productname: productname,
+                    productdescription: productdescription,
+                    imageurl: imageurl,
+                    getmethod: getmethod,
+                    productid: productid,
+                    useraccount: this.state.useraccount,
+                })
+                Alert.alert('已收藏')
+              }
+           
+       
         
-    }
+    })
+}
 
     render(){
         const {productname , productdescription , productprice, producttype , 

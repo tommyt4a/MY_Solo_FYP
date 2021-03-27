@@ -40,6 +40,7 @@ import updateproductview from '../screens/ProfileScreen/updateproductview'
 import ProductListDetail from '../screens/ProductScreen/ProductListDetail'
 import ChatRoom from '../screens/ChatScreen/ChatRoom'
 import ChatList from '../screens/ChatScreen/ChatList'
+import favouritedetail from '../screens/ProfileScreen/favouritedetail'
 
 
 const Stack = createStackNavigator();
@@ -105,6 +106,8 @@ const Profile = () => {
     <ProfileStack.Screen name = "ForgotScreen" component= {ForgotScreen}/>
     <ProfileStack.Screen name = "modifyproduct" component = {modifyproduct} />
     <ProfileStack.Screen name = "updateproductview" component = {updateproductview} />
+    <ProfileStack.Screen name = "favouritedetail" component = {favouritedetail} />
+    
     
     
     

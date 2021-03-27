@@ -26,6 +26,7 @@ class ProfileScreen extends React.Component{
     number: 1,
     refreshing: false,
     product: [],
+    favourite:[],
     
     
   }
@@ -111,9 +112,67 @@ class ProfileScreen extends React.Component{
     }else if(this.state.activeindex == 1)
     {
       return(
+        <ScrollView style={styles.scroll1} refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }>
         <View>
-          <Text>我的收藏</Text>
+        <FlatList
+      data={this.state.favourite}
+      renderItem={({ item }) => (
+        
+         
+        <View style={{ height: 120, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          
+          <TouchableOpacity onPress={()=>this.props.navigation.navigate('favouritedetail' , { productid: item.productid
+            , useraccount: item.useraccount, ownername: item.ownername , productid: item.productid, productname: item.productname, })}>
+           <View style={styles.fullbutton}>
+            
+
+            
+           <View style={styles.halfbutton1}>
+             <Image source={{ uri: item.imageurl }} style={{ width: 100, height: 100 }}/>
+           </View>
+           
+          <View style={{flexDirection:'row'}}>
+          <View style={styles.halfbutton2}>
+          <Text>交易方式: </Text>
+          <Text>物品種類: </Text>
+          <Text >物品名稱: </Text>
+          <Text>價錢: </Text>
+          
+          <Text>描述: </Text>
+         
+          </View>
+          
+           <View style={styles.halfbutton3}>
+          <Text>{item.getmethod}</Text>
+          <Text>{item.producttype}</Text>
+          <Text numberOfLines= {1}>{item.productname}</Text>
+          <Text>${item.productprice}</Text>
+          <Text numberOfLines= {1}>{item.productdescription}</Text>
+          </View>
+
+
+          </View>
+
+            
+
+          </View>
+          </TouchableOpacity>
+          
         </View>
+        
+        
+        
+      )}
+    />
+          
+        </View>
+       </ScrollView>
+
       )
     }
   }
@@ -237,12 +296,33 @@ loadcheck = async () =>{
     this.setState({number: 0})
     this.setState({useraccount:''})
     this.setState({product:[]})
+    this.setState({favourite:[]})
     
     
     this.props.navigation.navigate(HomeScreen)
   }
 
-  
+  loadfavourite= async()=>{
+    var value = await AsyncStorage.getItem('useraccount');
+    console.log(value)
+    
+    firebase.firestore()
+  .collection('user').doc(value).collection('favouriteproduct').where('useraccount','==',value)
+  .onSnapshot(querySnapshot => {
+    const getfavourite = [];
+
+    querySnapshot.forEach(documentSnapshot => {
+      getfavourite.push({
+        ...documentSnapshot.data(),
+        key: documentSnapshot.id,
+      });
+    });
+    console.log(getfavourite)
+      this.setState({favourite: getfavourite})
+    })
+    
+
+  }
   
   componentDidUpdate(){
     
@@ -255,6 +335,7 @@ loadcheck = async () =>{
     if(this.state.refreshing===true){
       
       this.loadproduct();
+      this.loadfavourite()
     }
   }
   
@@ -263,6 +344,8 @@ componentDidMount(){
   this.load()
   
   this.loadproduct()
+
+  this.loadfavourite()
     
   
 
