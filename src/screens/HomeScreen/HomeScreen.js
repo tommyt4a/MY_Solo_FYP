@@ -33,17 +33,17 @@ state={
 
                         <View style={styles.container}>
                             <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '家具'})} >                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
+                                <Image style={styles.iconbutton} source={require('../../../assets/furniture.jpg')} />
                                  
                             </TouchableOpacity>
                             
 
                             <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '電器'})}>                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
+                                <Image style={styles.iconbutton} source={require('../../../assets/電器.jpg')} />
                             </TouchableOpacity>
 
                             <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '電腦'})}>                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
+                                <Image style={styles.iconbutton} source={require('../../../assets/電腦.jpg')} />
                             </TouchableOpacity>
 
                         </View>
@@ -60,16 +60,16 @@ state={
 
                         <View style={styles.container}>
                             <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '手機'})}>                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
+                                <Image style={styles.iconbutton} source={require('../../../assets/手機.jpg')} />
                             </TouchableOpacity>
                             
 
                             <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '模型'})}>                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
+                                <Image style={styles.iconbutton} source={require('../../../assets/模型.jpeg')} />
                             </TouchableOpacity>
 
                             <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '玩具'})}>                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
+                                <Image style={styles.iconbutton} source={require('../../../assets/玩具.jpg')} />
                             </TouchableOpacity>
 
                         </View>
@@ -84,16 +84,16 @@ state={
 
                         <View style={styles.container}>
                             <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '手作'})}>                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
+                                <Image style={styles.iconbutton} source={require('../../../assets/手作.jpg')} />
                             </TouchableOpacity>
                             
 
                             <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '書本'})}>                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
+                                <Image style={styles.iconbutton} source={require('../../../assets/書本.jpeg')} />
                             </TouchableOpacity>
 
                             <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '光碟'})}>                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
+                                <Image style={styles.iconbutton} source={require('../../../assets/光碟.jpg')} />
                             </TouchableOpacity>
 
                         </View>
@@ -107,16 +107,16 @@ state={
 
                         <View style={styles.container}>
                             <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '衣服'})}>                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
+                                <Image style={styles.iconbutton} source={require('../../../assets/衣服.webp')} />
                             </TouchableOpacity>
                             
 
                             <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '鞋類'})}>                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
+                                <Image style={styles.iconbutton} source={require('../../../assets/鞋類.jpg')} />
                             </TouchableOpacity>
 
                             <TouchableOpacity onPress={()=>this.props.navigation.navigate('ProductList', {producttype: '飾物'})}>                           
-                                <Image style={styles.iconbutton} source={{uri:'https://api.elle.com.hk/var/ellehk/storage/images/fashion/2020-horoscopes-lucky-accessories/node_1773370/32254247-1-chi-HK/10_img_1040_780.png'}} />
+                                <Image style={styles.iconbutton} source={require('../../../assets/飾物.png')} />
                             </TouchableOpacity>
 
                         </View>

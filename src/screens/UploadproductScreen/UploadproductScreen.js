@@ -111,11 +111,19 @@ class UploadproductScreen extends React.Component{
           <Menu >
   <MenuTrigger text='選擇物品種類:  '  />
   <MenuOptions  >
-    <MenuOption onSelect={()=>this.setState({producttype: '電腦'})} text='電腦'/>
-    <MenuOption onSelect={()=>this.setState({producttype: '手機'})} text='手機'/>
+    <MenuOption onSelect={()=>this.setState({producttype: '家具'})} text='家具'/>
+    <MenuOption onSelect={()=>this.setState({producttype: '電器'})} text='手機'/>
     
-    <MenuOption onSelect={()=>this.setState({producttype: '家電'})} text='家電' />
+    <MenuOption onSelect={()=>this.setState({producttype: '電腦'})} text='電腦' />
+    <MenuOption onSelect={()=>this.setState({producttype: '手機'})} text='手機' />
+    <MenuOption onSelect={()=>this.setState({producttype: '模型'})} text='模型' />
     <MenuOption onSelect={()=>this.setState({producttype: '玩具'})} text='玩具' />
+    <MenuOption onSelect={()=>this.setState({producttype: '手作'})} text='手作' />
+    <MenuOption onSelect={()=>this.setState({producttype: '書本'})} text='書本' />
+    <MenuOption onSelect={()=>this.setState({producttype: '光碟'})} text='光碟' />
+    <MenuOption onSelect={()=>this.setState({producttype: '衣服'})} text='衣服' />
+    <MenuOption onSelect={()=>this.setState({producttype: '鞋類'})} text='鞋類' />
+    <MenuOption onSelect={()=>this.setState({producttype: '飾物'})} text='飾物' />
   </MenuOptions>
   
 </Menu>
