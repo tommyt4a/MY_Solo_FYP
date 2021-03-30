@@ -42,6 +42,7 @@ import ChatRoom from '../screens/ChatScreen/ChatRoom'
 import ChatList from '../screens/ChatScreen/ChatList'
 import favouritedetail from '../screens/ProfileScreen/favouritedetail'
 import Searchdetail from '../screens/SearchScreen/Searchdetail'
+import threed from '../screens/3D/threed'
 
 
 const Stack = createStackNavigator();
@@ -59,6 +60,7 @@ const Chat = () => {
     <ChatStack.Screen name = "ChatScreen" component = {ChatScreen} />
     <ChatStack.Screen name = "ChatList" component= {ChatList}/>
     <ChatStack.Screen name = "ChatRoom" component= {ChatRoom}/>
+    <ChatStack.Screen name = "threed" component= {threed}/>
 
     
     

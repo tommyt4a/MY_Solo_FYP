@@ -5,6 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import ChatList from './ChatList'
 import ChatRoom from './ChatRoom'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import threed from '../3D/threed'
 
 import firebase from 'firebase';
 import 'firebase/firestore';
@@ -52,8 +53,8 @@ class ChatScreen extends React.Component{
             }
      
          })
-
-         this.props.navigation.navigate('ChatList', {username: this.state.username , useraccount: this.state.useraccount})
+         this.props.navigation.navigate(threed)
+         //this.props.navigation.navigate('ChatList', {username: this.state.username , useraccount: this.state.useraccount})
     }
     }
 
