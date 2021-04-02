@@ -1,93 +1,4 @@
-
-import ExpoTHREE, { THREE } from 'expo-three';
-import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native'
-
-import { GLView } from "expo-gl";
-
-
-
-
- class threed extends React.Component {
-
-  render() {
-      return (
-          <GLView
-            onContextCreate={this.onContextCreate}
-            onRender={this.onRender}
-          />
-      )
-  }
-  onContextCreate = async ({
-    gl,
-    width,
-    height,
-    scale: pixelRatio,
-  }) => {
-    this.renderer = new ExpoTHREE.Renderer({ gl, pixelRatio, width, height });
-    this.renderer.setClearColor(0x000000)
-    this.renderer.capabilities.maxVertexUniforms = 52502;
-
-
-    this.camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
-    this.camera.position.set(0,6,12);
-    this.camera.lookAt(0,0,0);
-
-    this.setupScene();
-    await this.loadModelsAsync();
-  };
-
-  setupScene = () => {
-    // scene
-    this.scene = new THREE.Scene();
-    this.setupLights();
-  };
-
-  setupLights = () => {
-    // lights
-    const directionalLightA = new THREE.DirectionalLight(0xffffff);
-    directionalLightA.position.set(1, 1, 1);
-    this.scene.add(directionalLightA);
-
-    const directionalLightB = new THREE.DirectionalLight(0xffeedd);
-    directionalLightB.position.set(-1, -1, -1);
-    this.scene.add(directionalLightB);
-
-    const ambientLight = new THREE.AmbientLight(0x222222);
-    this.scene.add(ambientLight);
-  };
-
-  loadModelsAsync = async () => {
-    const model = {
-      'man.obj': require('../../../assets/man.obj'),
-      
-    };
-
-    const mesh = await ExpoTHREE.loadAsync(
-      [model['man.obj']],
-      null,
-      name => {
-        // `name` must be a loaded image and already existing in the model object.
-        return model[name]
-      },
-    );
-
-    ExpoTHREE.utils.scaleLongestSideToSize(mesh, 5);
-    ExpoTHREE.utils.alignMesh(mesh, { x: 0.5 });
-
-    this.scene.add(mesh);
-    this.mesh = mesh;
-  };
-
-  onRender = delta => {
-    this.mesh.rotation.y += 0.3 * delta;
-    this.renderer.render(this.scene, this.camera);
-  };
-}
-
-export default threed;
-
-/*import * as React from "react";
+import * as React from "react";
 import { View, TouchableWithoutFeedback, Text } from "react-native";
 import { GLView } from "expo-gl";
 import { Renderer } from "expo-three";
@@ -102,9 +13,13 @@ import {
   PointLight,
   Scene,
   SpotLight,
+  
 } from "three";
-import {MTLLoader, OBJLoader} from 'three-obj-mtl-loader'
+
+import {OBJLoader} from 'three/examples/jsm/loaders/OBJLoader.js';
+import {MTLLoader} from 'three/examples/jsm/loaders/MTLLoader';
 import ExpoTHREE from "expo-three";
+import { Asset } from 'expo-asset';
 
 
 
@@ -171,41 +86,13 @@ const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
 
 
-
-
-/// Get all the files in the mesh
-const model = {
-  'freedam.obj': require('../../../assets/freedam.obj'),
-  'freedam.mtl': require('../../../assets/freedam.mtl'),
-  
-};
-console.log("added")
-/// Load model!
-const mesh = await ExpoTHREE.loadAsync(
-  [model['freedam.obj'], model['freedam.mtl']],
-  null,
-  name => {
-    // `name` must be a loaded image and already existing in the model object.
-    return model[name]
-  },
-);
-console.log("added")
-/// Update size and position
-ExpoTHREE.utils.scaleLongestSideToSize(mesh, 5);
-ExpoTHREE.utils.alignMesh(mesh, { y: 1 });
-/// Smooth mesh
-// ExpoTHREE.utils.computeMeshNormals(mesh);
-
-/// Add the mesh to the scene
-this.scene.add(mesh);
-console.log("added")
-/// Save it so we can rotate
-this.mesh = mesh;
-
-  
-
-
-
+const asset = Asset.fromModule(require('./Lamp.obj'));
+await asset.downloadAsync();
+const loader = new OBJLoader();
+loader.load(asset.uri, group =>{
+    model= group
+    scene.add(model)
+})
 
             
         
@@ -218,7 +105,7 @@ this.mesh = mesh;
               cameraInitialPositionZ
             );
 
-            camera.lookAt(0,0,0);
+            camera.lookAt(cube.position);
            
             // Render function
             const render = () => {
@@ -238,5 +125,5 @@ this.mesh = mesh;
 }
 
 
-export default threed;*/
+export default threed;
 

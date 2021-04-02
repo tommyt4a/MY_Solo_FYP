@@ -3375,6 +3375,11 @@ expo-gl@~9.2.0:
     fbjs "1.0.0"
     invariant "^2.2.4"
 
+expo-graphics@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/expo-graphics/-/expo-graphics-1.1.0.tgz#bdafa642fee3d6041a9452b26fa5c1992570deef"
+  integrity sha512-uKh0T7zxpEkCBiDsEK04JFpmt146DRLejzBWyLC4LNd6KaSol/4w8lQXfXVQiKxF1xHkd/sWyFuln4q8puMNPQ==
+
 expo-image-picker@~9.2.0:
   version "9.2.1"
   resolved "https://registry.yarnpkg.com/expo-image-picker/-/expo-image-picker-9.2.1.tgz#113a46bfc8ef9bf675e8700b1bf7b8472f4de516"
