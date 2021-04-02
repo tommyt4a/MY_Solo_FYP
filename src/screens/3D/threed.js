@@ -37,9 +37,9 @@ class threed extends React.Component{
       
 
 
-let cameraInitialPositionX = 5;
-let cameraInitialPositionY = 5;
-let cameraInitialPositionZ = 5;
+let cameraInitialPositionX = 20;
+let cameraInitialPositionY = 20;
+let cameraInitialPositionZ = 20;
         return (
           
 
@@ -69,21 +69,21 @@ let cameraInitialPositionZ = 5;
             pointLight.position.set(0, 200, 200);
             scene.add(pointLight);
         
-            const spotLight = new SpotLight(0xff0000, 0.5);
+            const spotLight = new SpotLight(0xffffff, 0.5);
             spotLight.position.set(0, 500, 100);
             spotLight.lookAt(scene.position);
             scene.add(spotLight);
             
-            function update() {
-              cube.rotation.y += 0.05;
-              cube.rotation.x += 0.025;
-            }
+           // function update() {
+             // cube.rotation.y += 0.05;
+          //    cube.rotation.x += 0.025;
+          //  }
         
             // Add sphere object instance to our scene
-            const geometry = new THREE.BoxGeometry( 5, 1, 1 );
-const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
-const cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
+          //  const geometry = new THREE.BoxGeometry( 5, 1, 1 );
+//const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+//const cube = new THREE.Mesh( geometry, material );
+//scene.add( cube );
 
 
 const asset = Asset.fromModule(require('./Lamp.obj'));
@@ -105,7 +105,7 @@ loader.load(asset.uri, group =>{
               cameraInitialPositionZ
             );
 
-            camera.lookAt(cube.position);
+            camera.lookAt(0,0,0);
            
             // Render function
             const render = () => {
@@ -113,7 +113,7 @@ loader.load(asset.uri, group =>{
               renderer.render(scene, camera);
               gl.endFrameEXP();
               
-              update()
+              //update()
             };
             render();
           }}
