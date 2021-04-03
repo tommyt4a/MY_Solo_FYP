@@ -7,6 +7,7 @@ import 'firebase/firestore';
 import 'firebase/firebase-storage'
 import { Alert } from 'react-native';
 import moment from 'moment'
+import threed from '../3D/threed'
 
 
 class ProductListDetail extends React.Component{
@@ -135,6 +136,12 @@ class ProductListDetail extends React.Component{
                 </TouchableOpacity>
 
                 </View>
+                <View style={{ alignItems: 'center', }}>
+                    <TouchableOpacity style={styles.three}onPress={()=>this.props.navigation.navigate(threed)}>
+                        <Text>開啟3D模型</Text>
+                    </TouchableOpacity>
+
+                </View>
                 
                 
 
@@ -151,6 +158,15 @@ class ProductListDetail extends React.Component{
 }
 
 const styles = StyleSheet.create({
+    three:{
+        borderWidth:1,
+        borderColor:'black',
+        marginTop:10,
+        height:30,
+        width:110,
+        alignItems: 'center',
+        justifyContent:'center',
+    },
     description:{
         flexDirection: 'row',
         maxWidth:220,

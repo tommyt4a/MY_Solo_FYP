@@ -125,7 +125,12 @@ componentDidMount(){
 
                 </View>
                 
-                
+                <View style={{ alignItems: 'center', }}>
+                    <TouchableOpacity style={styles.three}onPress={()=>this.props.navigation.navigate(threed)}>
+                        <Text>開啟3D模型</Text>
+                    </TouchableOpacity>
+
+                </View>
                 <View style={styles.buttonstyle}>
                 <TouchableOpacity style={styles.button1} onPress={() => this.props.navigation.navigate(UploadproductScreen)}>
                     <Text>返回上一頁</Text>
@@ -147,6 +152,15 @@ componentDidMount(){
 }
 
 const styles = StyleSheet.create({
+    three:{
+        borderWidth:1,
+        borderColor:'black',
+        marginTop:10,
+        height:30,
+        width:110,
+        alignItems: 'center',
+        justifyContent:'center',
+    },
     description:{
         flexDirection: 'row',
         maxWidth:220,

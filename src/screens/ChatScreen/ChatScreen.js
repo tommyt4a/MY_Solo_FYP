@@ -53,7 +53,7 @@ class ChatScreen extends React.Component{
             }
      
          })
-         this.props.navigation.navigate(threed)
+         this.props.navigation.navigate(ChatList)
          //this.props.navigation.navigate('ChatList', {username: this.state.username , useraccount: this.state.useraccount})
     }
     }

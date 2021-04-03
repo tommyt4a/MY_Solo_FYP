@@ -61,7 +61,7 @@ import 'firebase/firestore';
     <View style={styles.imageset}>
       
       {image && <Image source={{ uri: image }} style={{ width: 250, height: 150 }} />}
-      <View style={{marginTop: 10, marginBottom:10}}>
+      <View style={{marginTop: 10, marginBottom:5}}>
         <Button title="請選擇物品的圖片"  onPress={pickImage} />
       </View>
       
@@ -107,6 +107,9 @@ class UploadproductScreen extends React.Component{
         <ScrollView>
           <View style={styles.container}>
           <ImagePickerExample/>
+          <View style={{marginTop: 10, marginBottom:10}}>
+        <Button title="加入3D模型" />
+      </View>
           <View style={{flexDirection:'row'}}>
           <Menu >
   <MenuTrigger text='選擇物品種類:  '  />
