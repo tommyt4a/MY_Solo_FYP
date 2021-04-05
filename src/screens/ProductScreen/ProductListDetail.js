@@ -89,7 +89,7 @@ class ProductListDetail extends React.Component{
                     productid: productid,
                     useraccount: this.state.useraccount,
                 })
-                Alert.alert('已收藏')
+                Alert.alert('已收藏');
               }
            
        

@@ -8,6 +8,7 @@ import 'firebase/firebase-storage'
 import { Alert } from 'react-native';
 import moment from 'moment'
 import SearchScreen from './SearchScreen'
+import threed from '../3D/threed'
 
 
 class Searchdetail extends React.Component{

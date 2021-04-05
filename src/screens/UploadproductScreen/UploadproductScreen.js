@@ -34,7 +34,7 @@ import 'firebase/firestore';
       if (Platform.OS !== 'web') {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (status !== 'granted') {
-          alert('Sorry, we need camera roll permissions to make this work!');
+          Alert.alert('Sorry, we need camera roll permissions to make this work!');
         }
       }
     })();
@@ -115,7 +115,7 @@ class UploadproductScreen extends React.Component{
   <MenuTrigger text='選擇物品種類:  '  />
   <MenuOptions  >
     <MenuOption onSelect={()=>this.setState({producttype: '家具'})} text='家具'/>
-    <MenuOption onSelect={()=>this.setState({producttype: '電器'})} text='手機'/>
+    <MenuOption onSelect={()=>this.setState({producttype: '電器'})} text='電器'/>
     
     <MenuOption onSelect={()=>this.setState({producttype: '電腦'})} text='電腦' />
     <MenuOption onSelect={()=>this.setState({producttype: '手機'})} text='手機' />

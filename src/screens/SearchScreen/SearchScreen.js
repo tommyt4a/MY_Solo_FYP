@@ -179,7 +179,8 @@ class SearchScreen extends React.Component{
          
         <View style={{ height: 120, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           
-          <TouchableOpacity onPress={()=>this.props.navigation.navigate('Searchdetail',{producttype: item.producttype , productname: item.productname 
+          <TouchableOpacity style={{borderWidth:1, alignItems: 'center',
+  justifyContent: 'center', marginTop:5}} onPress={()=>this.props.navigation.navigate('Searchdetail',{producttype: item.producttype , productname: item.productname 
   , productdescription: item.productdescription , productprice: item.productprice , ownername: item.ownername, imageurl: item.imageurl , getmethod: item.getmethod 
   , owneraccount: item.owneraccount , productid: item.productid , createat: item.createat})}>
            <View style={styles.fullbutton}>
@@ -193,18 +194,20 @@ class SearchScreen extends React.Component{
           <View style={{flexDirection:'row'}}>
           <View style={styles.halfbutton2}>
           <Text>交易方式: </Text>
-          <Text>物品種類: </Text>
+          
           <Text >物品名稱: </Text>
           <Text>價錢: </Text>
+          <Text>賣家: </Text>
           <Text>描述: </Text>
          
           </View>
           
            <View style={styles.halfbutton3}>
           <Text>{item.getmethod}</Text>
-          <Text>{item.producttype}</Text>
+          
           <Text numberOfLines= {1}>{item.productname}</Text>
           <Text>${item.productprice}</Text>
+          <Text>{item.ownername}</Text>
           <Text numberOfLines= {1}>{item.productdescription}</Text>
           </View>
 

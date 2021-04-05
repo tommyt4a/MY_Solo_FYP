@@ -38,9 +38,7 @@ export default class SignupScreen extends React.Component {
     else if (this.state.password.length < 6){
       Alert.alert('密碼長度不足')
     }
-    else if (this.state.displayname.length < 8){
-      Alert.alert('顯示名稱長度不足')
-    }
+    
     else {firebase.firestore().collection('user').doc(this.state.account).get().then((doc) => {
       if (doc.exists){
         Alert.alert("帳號己存在");
@@ -94,7 +92,7 @@ export default class SignupScreen extends React.Component {
           <TextInput  
           ref={input => { this.textInput1 = input }}
             style={styles.inputText}
-            placeholder="顯示名稱(最少8個字元)..." 
+            placeholder="顯示名稱..." 
             placeholderTextColor="#003f5c"
             onChangeText={text => this.setState({displayname:text})}
             maxLength={20}/>
