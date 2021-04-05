@@ -6,6 +6,7 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/firebase-storage'
 import { Alert } from 'react-native';
+import threed from '../3D/threed'
 
 
 class favouritedetail extends React.Component{

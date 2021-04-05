@@ -7,6 +7,7 @@ import LoginScreen from '../LoginScreen/LoginScreen'
 import { EventRegister } from 'react-native-event-listeners'
 import Listfavourite from './Listfavourite'
 import Listdetail from './Listdetail'
+import threed from '../3D/threed'
 
 import firebase from 'firebase';
 import 'firebase/firestore';
@@ -59,7 +60,8 @@ class ProfileScreen extends React.Component{
          
         <View style={{ height: 120, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           
-          <TouchableOpacity onPress={()=>this.props.navigation.navigate('Listdetail' , {productname: item.productname 
+          <TouchableOpacity style={{borderWidth:1, alignItems: 'center',
+  justifyContent: 'center', marginTop:5}} onPress={()=>this.props.navigation.navigate('Listdetail' , {productname: item.productname 
             , productprice: item.productprice , producttype: item.producttype , productdescription: item.productdescription , getmethod: item.getmethod 
             , imageurl: item.imageurl, productid: item.productid , createat: item.createat})}>
            <View style={styles.fullbutton}>
@@ -126,7 +128,8 @@ class ProfileScreen extends React.Component{
          
         <View style={{ height: 120, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           
-          <TouchableOpacity onPress={()=>this.props.navigation.navigate('favouritedetail' , { productid: item.productid
+          <TouchableOpacity style={{borderWidth:1, alignItems: 'center',
+  justifyContent: 'center', marginTop:5}} onPress={()=>this.props.navigation.navigate('favouritedetail' , { productid: item.productid
             , useraccount: item.useraccount, ownername: item.ownername , productid: item.productid, productname: item.productname, })}>
            <View style={styles.fullbutton}>
             

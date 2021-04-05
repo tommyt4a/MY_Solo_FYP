@@ -77,6 +77,7 @@ const Product = () => {
     <ProductStack.Screen name = "HomeScreen" component = {HomeScreen} />
     <ProductStack.Screen name = "ProductList" component= {ProductList}/>
     <ProductStack.Screen name = "ProductListDetail" component= {ProductListDetail}/>
+    <ProductStack.Screen name = "threed" component= {threed}/>
 
     
     
@@ -91,6 +92,7 @@ const UploadProduct = () => {
   }} > 
     <UploadProductStack.Screen name = "UploadproductScreen" component = {UploadproductScreen} />
     <UploadProductStack.Screen name = "productview" component= {productview}/>
+    <UploadProductStack.Screen name = "threed" component= {threed}/>
     
     
     
@@ -111,6 +113,7 @@ const Profile = () => {
     <ProfileStack.Screen name = "modifyproduct" component = {modifyproduct} />
     <ProfileStack.Screen name = "updateproductview" component = {updateproductview} />
     <ProfileStack.Screen name = "favouritedetail" component = {favouritedetail} />
+    <ProfileStack.Screen name = "threed" component = {threed} />
     
     
     
@@ -125,6 +128,7 @@ const Search = () => {
   }} > 
     <SearchStack.Screen name = "SearchScreen" component = {SearchScreen} />
     <SearchStack.Screen name = "Searchdetail" component= {Searchdetail}/>
+    <SearchStack.Screen name = "threed" component= {threed}/>
     
     
     

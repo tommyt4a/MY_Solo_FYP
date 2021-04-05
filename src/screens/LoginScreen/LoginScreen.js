@@ -81,7 +81,7 @@ import 'firebase/firestore';
 
     return (
       <View style={styles.container}>
-        <Text style={styles.logo}>TradeYourSelf</Text>
+        <Text style={styles.logo}>歡迎回來~!</Text>
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
