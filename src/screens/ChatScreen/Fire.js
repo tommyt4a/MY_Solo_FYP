@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import { Text, View, StyleSheet , Button} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -97,4 +97,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Fire;
+export default Fire;*/

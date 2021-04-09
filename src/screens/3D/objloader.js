@@ -1,4 +1,4 @@
-THREE.OBJLoader = ( function () {
+/*THREE.OBJLoader = ( function () {
 
 	// o object_name | g group_name
 	var object_pattern = /^[og]\s*(.+)?/;
@@ -680,6 +680,7 @@ THREE.OBJLoader = ( function () {
 					 * surfaces, smoothing groups are either turned on or off; there is no difference between values greater
 					 * than 0."
 					 */
+					/*
 					if ( result.length > 1 ) {
 
 						var value = result[ 1 ].trim().toLowerCase();
@@ -897,4 +898,4 @@ THREE.OBJLoader = ( function () {
 
 	return OBJLoader;
 
-} )();
+} )();*/

@@ -75,7 +75,10 @@ class ProductListDetail extends React.Component{
        console.log(this.state.useraccount)
         const {productid ,productname , productdescription , productprice, producttype , 
             getmethod , imageurl ,  ownername}=this.props.route.params
-            firebase.firestore().collection('user').doc(this.state.useraccount).collection('favouriteproduct').doc(productid).get().then((doc) => {
+            if(this.state.token !=1){
+                Alert.alert('請先到個人資料登入')
+            }else {
+                firebase.firestore().collection('user').doc(this.state.useraccount).collection('favouriteproduct').doc(productid).get().then((doc) => {
                 if (doc.exists){
                   Alert.alert("已存在收藏中");
               }else{
@@ -95,6 +98,8 @@ class ProductListDetail extends React.Component{
        
         
     })
+            }
+            
 }
 
     render(){
