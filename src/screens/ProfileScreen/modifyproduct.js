@@ -66,6 +66,7 @@ function ImagePickerExample() {
         </View>
         
       </View>
+
     );
   }
 
@@ -114,6 +115,9 @@ class modifyproduct extends React.Component{
         <ScrollView>
           <View style={styles.container}>
           <ImagePickerExample/>
+          <View style={{ marginBottom:5}}>
+        <Button title="更換或加入3D模型" />
+      </View>
           <View style={{flexDirection:'row'}}>
           <Menu >
   <MenuTrigger text='選擇物品種類:  '  />
