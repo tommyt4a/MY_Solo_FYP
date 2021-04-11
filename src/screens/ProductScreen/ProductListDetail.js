@@ -91,6 +91,7 @@ class ProductListDetail extends React.Component{
                     getmethod: getmethod,
                     productid: productid,
                     useraccount: this.state.useraccount,
+                    ownername: ownername,
                 })
                 Alert.alert('已收藏');
               }

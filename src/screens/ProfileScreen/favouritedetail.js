@@ -124,6 +124,7 @@ class favouritedetail extends React.Component{
                 
                 <Text style={styles.text}>物品名稱: {this.state.productname}</Text>
                 <Text style={styles.text}>價錢: ${this.state.productprice}</Text>
+                <Text style={styles.text}>賣家: {this.state.ownername}</Text>
                 <Text style={styles.text}>建立於: {this.state.createat}</Text>
                 <View style={styles.description}>
                 <Text>描述:</Text>

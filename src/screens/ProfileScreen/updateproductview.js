@@ -22,6 +22,7 @@ class updateproductview extends React.Component{
         getmethod:'',   
         imageurl:'',
         productid:'',
+        ownername:'',
         
 
     }
@@ -74,7 +75,7 @@ class updateproductview extends React.Component{
 
         componentDidMount(){
             const {productname , productdescription , productprice, producttype , 
-                getmethod , imageurl , productid  } = this.props.route.params   
+                getmethod , imageurl , productid , ownername } = this.props.route.params   
             this.setState({productname: productname}) 
             this.setState({productdescription: productdescription})
             this.setState({productprice: productprice})
@@ -82,6 +83,7 @@ class updateproductview extends React.Component{
             this.setState({getmethod: getmethod}) 
             this.setState({imageurl: imageurl})
             this.setState({productid: productid}) 
+            this.setState({ownername: ownername}) 
 
     this.getpicture()
 
@@ -105,7 +107,7 @@ class updateproductview extends React.Component{
                 </View>
 
 
-                <Text style={styles.text}>賣家: {this.state.username}</Text>
+                <Text style={styles.text}>賣家: {this.state.ownername}</Text>
                 <Text style={styles.text}>物品名稱: {this.state.productname}</Text>
                 <Text style={styles.text}>價錢: ${this.state.productprice}</Text>
                 <View style={styles.description}>

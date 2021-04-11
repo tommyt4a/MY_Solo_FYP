@@ -30,7 +30,7 @@ class Listdetail extends React.Component{
 
     render(){
         const {productname , productdescription , productprice, producttype , 
-            getmethod , imageurl , productid ,createat } = this.props.route.params
+            getmethod , imageurl , productid ,createat,ownername } = this.props.route.params
         
         
             
@@ -68,7 +68,7 @@ class Listdetail extends React.Component{
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button2} onPress={()=>this.props.navigation.navigate('modifyproduct', {productname: productname , productdescription: productdescription 
                 , productprice: productprice, producttype: producttype , 
-            getmethod: getmethod , imageurl: imageurl , productid: productid})}>
+            getmethod: getmethod , imageurl: imageurl , productid: productid, ownername: ownername})}>
                     <Text>編輯物品</Text>
                 </TouchableOpacity>
 

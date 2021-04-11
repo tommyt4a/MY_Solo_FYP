@@ -63,6 +63,7 @@ export default function Listfavourite() {
           <Text>物品種類: </Text>
           <Text >物品名稱: </Text>
           <Text>價錢: </Text>
+          <Text>賣家: </Text>
           <Text>描述: </Text>
          
           </View>
@@ -72,6 +73,7 @@ export default function Listfavourite() {
           <Text>{item.producttype}</Text>
           <Text numberOfLines= {1}>{item.productname}</Text>
           <Text>${item.productprice}</Text>
+          <Text>{item.ownername}</Text>
           <Text numberOfLines= {1}>{item.productdescription}</Text>
           </View>
 

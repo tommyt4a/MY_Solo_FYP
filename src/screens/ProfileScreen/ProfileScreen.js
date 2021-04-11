@@ -63,7 +63,7 @@ class ProfileScreen extends React.Component{
           <TouchableOpacity style={{borderWidth:1, alignItems: 'center',
   justifyContent: 'center', marginTop:5}} onPress={()=>this.props.navigation.navigate('Listdetail' , {productname: item.productname 
             , productprice: item.productprice , producttype: item.producttype , productdescription: item.productdescription , getmethod: item.getmethod 
-            , imageurl: item.imageurl, productid: item.productid , createat: item.createat})}>
+            , imageurl: item.imageurl, productid: item.productid , createat: item.createat, ownername: item.ownername})}>
            <View style={styles.fullbutton}>
             
 
@@ -88,6 +88,7 @@ class ProfileScreen extends React.Component{
           <Text>{item.producttype}</Text>
           <Text numberOfLines= {1}>{item.productname}</Text>
           <Text>${item.productprice}</Text>
+          
           <Text numberOfLines= {1}>{item.productdescription}</Text>
           </View>
 
@@ -130,7 +131,7 @@ class ProfileScreen extends React.Component{
           
           <TouchableOpacity style={{borderWidth:1, alignItems: 'center',
   justifyContent: 'center', marginTop:5}} onPress={()=>this.props.navigation.navigate('favouritedetail' , { productid: item.productid
-            , useraccount: item.useraccount, ownername: item.ownername , productid: item.productid, productname: item.productname, })}>
+            , useraccount: item.useraccount, ownername: item.ownername , productid: item.productid, productname: item.productname, ownername: item.ownername })}>
            <View style={styles.fullbutton}>
             
 
@@ -142,19 +143,22 @@ class ProfileScreen extends React.Component{
           <View style={{flexDirection:'row'}}>
           <View style={styles.halfbutton2}>
           <Text>交易方式: </Text>
-          <Text>物品種類: </Text>
+          
           <Text >物品名稱: </Text>
           <Text>價錢: </Text>
-          
+          <Text>賣家: </Text>
           <Text>描述: </Text>
          
           </View>
           
            <View style={styles.halfbutton3}>
           <Text>{item.getmethod}</Text>
-          <Text>{item.producttype}</Text>
+          
           <Text numberOfLines= {1}>{item.productname}</Text>
+          
           <Text>${item.productprice}</Text>
+          <Text>{item.ownername}</Text>
+          
           <Text numberOfLines= {1}>{item.productdescription}</Text>
           </View>
 

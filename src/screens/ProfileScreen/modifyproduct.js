@@ -73,7 +73,7 @@ function ImagePickerExample() {
 
 class modifyproduct extends React.Component{
     state ={
-        username: '',
+        ownername: '',
         useraccount:'',
         activeindex: 0,
         token: 0,
@@ -94,7 +94,7 @@ class modifyproduct extends React.Component{
 
       componentDidMount(){
         const {productname , productdescription , productprice, producttype , 
-            getmethod , imageurl , productid  } = this.props.route.params   
+            getmethod , imageurl , productid , ownername } = this.props.route.params   
         this.setState({productname: productname}) 
         this.setState({productdescription: productdescription})
         this.setState({productprice: productprice})
@@ -102,6 +102,8 @@ class modifyproduct extends React.Component{
         this.setState({getmethod: getmethod}) 
         this.setState({imageurl: imageurl})
         this.setState({productid: productid}) 
+        this.setState({ownername: ownername})
+        console.log(this.state.ownername)
 
     }
 
@@ -180,7 +182,7 @@ class modifyproduct extends React.Component{
           <View style={styles.submitbutton}>
           <TouchableOpacity style={styles.submit} onPress={()=>this.props.navigation.navigate('updateproductview' , 
             {productname: this.state.productname , productdescription: this.state.productdescription , productprice: this.state.productprice , producttype: this.state.producttype , 
-            getmethod: this.state.getmethod, imageurl: this.state.imageurl , productid: this.state.productid })}  >
+            getmethod: this.state.getmethod, imageurl: this.state.imageurl , productid: this.state.productid , ownername: this.state.ownername})}  >
             <Text>修改預覽</Text>
 
           </TouchableOpacity>
