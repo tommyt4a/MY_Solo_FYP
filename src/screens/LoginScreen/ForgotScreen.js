@@ -28,7 +28,10 @@ class ForgotScreen extends React.Component{
                         
 
                     })
-                    }})
+                    }else{
+                        Alert.alert("此香港身份證並不存在");
+                    }
+                })
 
         }
     }
